@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+      <service id="form.app_user_registration" class="AppBundle\Form\RegistrationFormType">
+        <argument>%fos_user.model.user.class%</argument>
+        <tag name="form.type" alias="app_form_registration"/>
+      </service>
+      <service id="form.app_user_profile" class="AppBundle\Form\ProfileFormType">
+        <argument>%fos_user.model.user.class%</argument>
+        <tag name="form.type" alias="app_form_user_profile"/>
+      </service>
+      <!--<service id="form.app_form_resetteing" class="AppBundle\Form\ResettingFormType">-->
+        <!--<argument>%fos_user.model.user.class%</argument>-->
+        <!--<tag name="form.type" alias="app_form_resetting"/>-->
+      <!--</service>-->
+    </services>
+</container>

@@ -1,0 +1,19 @@
+{% macro css() %}
+  <link type="text/css" rel="stylesheet" href="{{ asset('assets/plugins/fileinput/fileinput.min.css') }}"/>
+{% endmacro %}
+
+{% macro js() %}
+  <script type="text/javascript" src="{{ asset('assets/plugins/fileinput/fileinput.min.js') }}"></script>
+{% endmacro %}
+
+{% macro component() %}
+  jQuery('.file-component').fileinput({
+    allowedFileTypes: ['image'],
+    allowedFileExtensions: ['jpg', 'png', 'jpeg'],
+    showCaption: false,
+    showRemove: false,
+    showUpload: false,
+    browseClass: 'btn btn-info btn-block',
+    browseLabel: '{{ 'SELECT_PICTURE'|trans({},'admin') }}'
+  });
+{% endmacro %}

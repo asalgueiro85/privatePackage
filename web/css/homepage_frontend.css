@@ -1,0 +1,62 @@
+* {font-family: ClearSans-Regular, RobotoDraft, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;}
+.header-top-home {
+  /*position: absolute;*/
+  /*width: 100%;*/
+  z-index: 10;
+}
+.header-top-home .btn-link, .header-top-home .dropdown-toggle {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.header-top-home .nav > li > a:focus, .header-top-home .nav > li > a:hover,
+.header-top-home .nav .open > a, .header-top-home .nav .open > a:focus, .header-top-home .nav .open > a:hover{
+  background: none;
+  text-decoration: none;
+}
+.header-top-home .dropdown-menu {
+  background: none;
+  border: none;
+  color: #ffffff;
+  box-shadow: none;
+}
+.header-top-home .dropdown-menu > li > a {color: #ffffff;}
+.header-top-home .dropdown-menu > li > a:focus, .header-top-home .dropdown-menu > li > a:hover {
+  background: none;
+}
+.carousel-caption{
+  top: 30%;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  width: 100%;
+}
+.carousel-caption h3 {
+  font-family: ClearSans-Bold;
+  font-size: 46px;
+}
+.carousel-caption p {
+  font-family: ClearSans-Medium;
+  font-size: 20px;
+}
+.carousel-indicators{bottom: 40px;}
+.carousel-indicators li.active {
+  border-color: yellow;
+  background-color: yellow;
+}
+.home-search-container {
+  position: absolute;
+  background-color: rgba(0,0,0,0.70);
+  padding: 15px 0px 30px 0px;
+  z-index: 20;
+  bottom: 0px;
+  width: 100%;
+}
+.home-search-container .search-indicators {
+  font-size: 11px;
+}
+.modal-footer {
+  border-top: none;}
+.footer-home {
+  height: 20px;
+  background-color: rgba(0,0,0,0.95);
+}

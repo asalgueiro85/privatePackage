@@ -1,0 +1,281 @@
+<div id="div_packet" class="row marL0 marR0">
+    <div class="row col-sm-12 div-second" ng-hide="packetName">
+        <div class="col-sm-6 padL30">
+            <div class="col-sm-5 padLR0">
+                <div class="div-img-packet"></div>
+            </div>
+            <div class="col-sm-7 text-left div-span-packet">
+                <span>Send a packet</span>
+            </div>
+        </div>
+        <div class="col-sm-6 padR0 text-right" ng-hide="hideEdit">
+            <div class="row switch-text">
+                <span class="">Switch to</span>
+            </div>
+            <div class="row marR0">
+                <span id="span_packet" class="upcoming-color"
+                      ng-click="actionCtrl.showCarryType()">Carry a packet</span>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="row col-sm-12 div-second" ng-hide="carryType">
+        {#carry a packet#}
+        <div class="col-sm-6 padL30">
+            <div class="col-sm-5 padLR0">
+                <div class="div-img-carry"></div>
+            </div>
+            <div class="col-sm-7 text-left div-span-packet">
+                <span>Carry a packet</span>
+            </div>
+        </div>
+        <div class="col-sm-6 padR0 text-right" ng-hide="hideEdit">
+            <div class="row switch-text">
+                <span class="">Switch to</span>
+            </div>
+            <div class="row marR0">
+                <span id="span_send" class="upcoming-color" ng-click="actionCtrl.showPacketName()">Send a packet</span>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row col-sm-12 div-form-style">
+        <div class="col-sm-12 div-form div-form-plus" ng-hide="packetName">
+            <div class="form-group col-sm-4 div-form-label">
+                {{ form_label(form.packetName) }}
+            </div>
+            <div class="form-group col-sm-8 div-form-left">
+                {{ form_widget(form.packetName) }}
+            </div>
+        </div>
+        <div class="col-sm-12 padl0 padT10" ng-hide="carryType">
+            <div class="row col-sm-12 div-car-img">
+                <div class="col-sm-2 radio-M3 padT10">
+                    {#<div class="carry-by"></div>#}
+                    <img src="{{ asset('img/back/bici_gray.png') }}">
+                </div>
+                <div class="col-sm-2 radio-M3 padT6">
+                    {#<div class="carry-moto"></div>#}
+                    <img src="{{ asset('img/back/motorcicl_gray.png') }}">
+                </div>
+                <div class="col-sm-2 radio-M3 padT8">
+                    {#<div class="carry-moto"></div>#}
+                    <img src="{{ asset('img/back/car_gray.png') }}">
+                </div>
+                <div class="col-sm-2 radio-M3 padT8">
+                    {#<div class="carry-moto"></div>#}
+                    <img src="{{ asset('img/back/van_gray.png') }}">
+                </div>
+                <div class="col-sm-2 radio-M3">
+                    {#<div class="carry-moto"></div>#}
+                    <img src="{{ asset('img/back/truck_gray.png') }}">
+                </div>
+                <div class="col-sm-2 radio-M3">
+                    {#<div class="carry-moto"></div>#}
+                    <img src="{{ asset('img/back/train_gray.png') }}">
+                </div>
+            </div>
+            <div class="row radio">
+                <div class="col-sm-2">
+                    <label class="padl0 padR10">
+                        <div class="row">
+                            <input id="bici" class="radio" name="appbundle_action[carryType]" value="bici"
+                                   checked="checked" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+
+
+                    </label>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="padl0 padR10">
+                        <div class="row">
+                            <input id="motorcicl" name="appbundle_action[carryType]" value="motorcicl" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="padl0 padR20">
+                        <div class="row">
+                            <input id="car" name="appbundle_action[carryType]" value="car" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="padl0 padR20">
+                        <div class="row">
+                            <input id="van" name="appbundle_action[carryType]" value="van" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="padl0 padR30">
+                        <div class="row">
+                            <input id="truck" name="appbundle_action[carryType]" value="truck" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="padl0 padR30">
+                        <div class="row">
+                            <input id="train" name="appbundle_action[carryType]" value="train" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row col-sm-12 div-car-img">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3 radio-M3 padT10">
+                    {#<div class="carry-by"></div>#}
+                    <img src="{{ asset('img/back/plane_gray.png') }}">
+                </div>
+                <div class="col-sm-3 radio-M3 padT6">
+                    {#<div class="carry-moto"></div>#}
+                    <img src="{{ asset('img/back/ship_gray.png') }}">
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="row radio">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <label class="padl0 padR10">
+                        <div class="row">
+                            <input id="plane" class="radio" name="appbundle_action[carryType]" value="plane"
+                                   checked="checked" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+
+
+                    </label>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="padl0 padR10">
+                        <div class="row">
+                            <input id="ship" name="appbundle_action[carryType]" value="ship" type="radio">
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                        </div>
+                    </label>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+
+            {#<div class="form-group col-sm-4 div-form-label">#}
+            {#{{ form_label(form.carryType) }}#}
+            {#</div>#}
+            {#<div class="form-group col-sm-8 div-form-left">#}
+            {#{{ form_widget(form.carryType) }}#}
+            {#</div>#}
+        </div>
+        <div class="col-sm-6 padM0 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    {{ form_label(form.weight) }}
+                </div>
+                <div class="form-group col-sm-8 div-form-left">
+                    {{ form_widget(form.weight) }}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6 padM0 padL5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    {{ form_label(form.volumen) }}
+                </div>
+                <div class="form-group col-sm-8 div-form-left padl0 padR0">
+                    {{ form_widget(form.volumen) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 padM0 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    {{ form_label(form.price) }}
+                </div>
+                <div class="form-group col-sm-8 div-form-left">
+                    {{ form_widget(form.price) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 padM0 padR5">
+            <div class="form-group checkbox col-sm-12 charity-check">
+                <label>
+                    {{ form_widget(form.caridad) }}
+                    <span class="checkbox-material">
+                        {#<span class="check"></span>#}
+                        </span>
+                    <span class="grey-form-color">Charity</span>
+                </label>
+
+            </div>
+        </div>
+        <div class="col-sm-12 div-form div-form-tarea">
+            <div class="form-group col-sm-3 div-form-label">
+                {{ form_label(form.observation) }}
+            </div>
+            <div class="form-group col-sm-9 div-form-left-tarea">
+                {{ form_widget(form.observation) }}
+            </div>
+        </div>
+
+        <div class="col-sm-12 padT10">
+            <div class="col-sm-4"></div>
+            <div class="padL20 col-sm-4 fileupload fileupload-new" data-provides="fileupload" style="">
+                <div class="row fileupload-preview thumbnail img-packet">
+
+                    {#&nbsp;<img id="dir_foto" src="{{ asset('img/back/add_photo.png') }}"#}
+                         {#alt="User Image"/>#}
+
+                    {% if entity.pathPicture %}
+                        {#&nbsp;<img id="dir_foto" src="{{ asset('uploads/images/packet/') }}{{ entity.pathPicture }}"#}
+                                   {#alt="User Image"/>#}
+                        <img id="dir_foto" src="{{ asset('uploads/images/packet/') }}{{ entity.pathPicture }}"
+                                   alt="User Image"/>
+                    {% else %}
+                        &nbsp;<img id="dir_foto" src="{{ asset('img/back/add_photo.png') }}"
+                                   alt="User Image"/>
+                    {% endif %}
+
+                </div>
+                <div class="row text-left form-group">
+                                                <span class="btn-file marL17">
+                                                    <span class="fileupload-new">Add photo...</span>
+                                                    <span class="fileupload-exists">Change photo..</span>
+                                                    {#<input id="appbundle_user[picture]" id="appbundle_user_picture" class="" type="file" />#}
+                                                    {{ form_widget(form.picture) }}
+                                                </span>
+
+                    <div class="row padL17">
+                        <a id="btn-remove" href="#" class="a-fileupload-form fileupload-exists"
+                           data-dismiss="fileupload">Remove photo...</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+
+        </div>
+
+        <input type="hidden" value="{{ type }}" id="type" name="type">
+    </div>
+</div>

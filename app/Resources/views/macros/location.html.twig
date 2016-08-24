@@ -1,0 +1,185 @@
+{% macro html(searchData) %}
+  <div class="location-container hide padL10 padR10 padT10 col-md-2">
+    <div class="form-group marB0">
+      <label class="control-label marR5">{{ 'FROM'|trans({},'frontend') }}</label>
+      <select class="form-control input-sm location" id="location_from" data-width="100%">
+        {% if searchData.fromId is defined and searchData.fromValue is defined %}
+        <option value="{{ searchData.fromId }}">{{ searchData.fromValue }}</option>
+        {% endif %}
+      </select>
+    </div>
+    <div class="form-group marB0">
+      <label class="control-label  marR5 padT5">{{ 'TO'|trans({},'frontend') }}</label>
+      <select class="form-control input-sm location" id="location_to" data-width="100%">
+        {% if searchData.toId is defined and searchData.toValue is defined %}
+        <option value="{{ searchData.toId }}">{{ searchData.toValue }}</option>
+        {% endif %}
+      </select>
+    </div>
+    <div class="from-group marB0">
+      <button type="button" class="btn btn-sm btn-default pull-right trash-location">
+        <span class="glyphicon glyphicon-trash text-muted"></span>
+      </button>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro js_ready(component, searchData) %}
+  var $component = jQuery('{{ component }}');
+  var $txt = "&nbsp";
+
+  {% if searchData.fromValue is defined and searchData.fromValue is not empty %}
+  $txt = "{{ 'FROM:'|trans({},'frontend') }}{{ searchData.fromValue }},";
+  {% endif %}
+  {% if searchData.toValue is defined and searchData.toValue is not empty %}
+  $txt = $txt + "{{ 'TO:'|trans({},'frontend') }}{{ searchData.toValue }}";
+  {% endif %}
+
+  $component.parent().append('<p id="location_info" style="cursor: text;margin:0;height: 22px;">' + $txt + '</p>');
+  var $newComponent = jQuery('#location_info');
+  $newComponent.attr('class', $component.attr('class'));
+  $newComponent.removeClass('{{ component }}');
+  $newComponent.height($component.height());
+  $component.addClass('hide');
+
+  $newComponent.on({
+    click: function() { 
+      var $this = jQuery(this);
+      var locationContainer = jQuery('.location-container');
+
+      if(locationContainer.hasClass('hide')) {
+        var $window = $(window);
+        var viewport = {
+          top: $window.scrollTop(),
+          bottom: $window.scrollTop() + $window.height()
+        };
+        var $parent = $this.parent();
+        var offset = $parent.offset();
+        var newDirection = null;
+        offset.bottom = offset.top + $parent.outerHeight(false);
+        var container = {
+          height: $parent.outerHeight(false)
+        };
+        container.top = offset.top;
+        container.bottom = offset.top + container.height;
+        var isCurrentlyAbove = locationContainer.hasClass('location-dropdown--above');
+        var isCurrentlyBelow = locationContainer.hasClass('location-dropdown--below');
+        var dropdown = {
+          height: 130
+        };
+        var enoughRoomAbove = viewport.top < (offset.top - dropdown.height);
+        var enoughRoomBelow = viewport.bottom > (offset.bottom + dropdown.height);
+        var css = {
+          left: offset.left,
+          top: container.bottom
+        };
+        if (!isCurrentlyAbove && !isCurrentlyBelow) {
+          newDirection = 'below';
+        }
+        if (!enoughRoomBelow && enoughRoomAbove && !isCurrentlyAbove) {
+          newDirection = 'above';
+        } else if (!enoughRoomAbove && enoughRoomBelow && isCurrentlyAbove) {
+          newDirection = 'below';
+        }
+        if (newDirection == 'above' || (isCurrentlyAbove && newDirection !== 'below')) {
+          css.top = container.top - dropdown.height - 46;
+        }
+        if (newDirection != null) {
+          locationContainer
+            .removeClass('location-dropdown--below location-dropdown--above hide')
+            .addClass('location-dropdown--' + newDirection);
+        }
+
+        locationContainer.removeClass('hide');
+        locationContainer.css(css);
+        locationContainer.addClass('show');
+      } else {
+        locationContainer.removeClass('show');
+        locationContainer.addClass('hide');
+      }
+    }
+  });
+  {#jQuery('select[name="travel_by"]').on({
+    change: function(){
+      changeTravel();
+    }
+  });
+  jQuery('#travel_time').on({
+    keypress: function(event){
+      if(event.which < 48 || event.which > 57) {
+        event.preventDefault();
+      }
+    },
+    change: function(){changeTravel();}
+  });#}
+  jQuery(document.body).on('mousedown', function(e){
+    var $target = $(e.target);
+    var $selectLocationContainer = $target.closest('.location-container');
+    var $selectComponent = $target.closest('{{ component }}');
+    if($selectLocationContainer.length > 0 || $selectComponent.length > 0) {
+      return;
+    } else {
+      var locationContainer = jQuery('.location-container');
+      if(locationContainer.hasClass('show')) {
+        locationContainer.removeClass('show').addClass('hide');
+      }
+    }
+  });
+  jQuery('button.trash-location').on('click', function(){
+    jQuery('.location-container select#location_from').select2('val','');
+    jQuery('.location-container select#location_to').select2('val','');
+    changeLocation();
+  });
+
+  jQuery('.location-container select.location').select2({
+    ajax: {
+      url: '{{ path('app_front_search_location_list') }}',
+      dataType: 'json',
+      delay: 250,
+      data: function (params) {
+        return {
+          match: params.term
+        };
+      },
+      cache: false
+    },
+    escapeMarkup: function (markup) { return markup; },
+    minimumInputLength: 3,
+  }).on("select2:select", function(e){
+    changeLocation();
+  });
+  jQuery('.location-container select#location_from').on('change', function(){
+    //changeLocation();
+  });
+  jQuery('.location-container select#location_to').on('change', function(){
+    //changeLocation();
+  });
+{% endmacro %}
+
+{% macro js_function(component) %}
+  function changeLocation() {
+    var text = [];
+    var values = [];
+    var text2 = [];
+    var from = jQuery('.location-container select#location_from');
+    if(from.val() != null) {
+      text.push('{{ 'FROM:'|trans({},'frontend') }}'+from.children('option:selected').text());
+      values.push('from:'+from.val());
+    }
+    var to = jQuery('.location-container select#location_to');
+    if(to.val() != null) {
+      text.push('{{ 'TO:'|trans({},'frontend') }}'+to.children('option:selected').text());
+      values.push('to:'+to.val());
+    }
+    jQuery('{{ component }}').val(values.join(';')).change();
+    jQuery('#location_info').text(text.join(','));
+  }
+{% endmacro %}
+
+{% macro css() %}
+
+{% endmacro %}
+
+{% macro js() %}
+  {#<script type="text/javascript" src="{{ asset('components/typeahead.js/dist/typeahead.bundle.min.js') }}"></script>#}
+{% endmacro %}

@@ -1,0 +1,283 @@
+{% extends '::baseBackend.html.twig' %}
+
+{% block head_style %}
+    <link type="text/css" href="{{ asset('css/fonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('components/bootstrap-material-design/dist/css/material.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('components/bootstrap-material-design/dist/css/material-fullpalette.min.css') }}" type="text/css" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/backend_style.css') }}" rel="stylesheet">
+
+
+    {#mis estilos#}
+    <link rel="stylesheet" href="{{ asset('components/slide/css/reset.css') }}" type="text/css" media="all">
+{% endblock head_style %}
+    {#{% block custom_javascripts %}#}
+    {#{% endblock custom_javascripts %}#}
+{% block header_content %}
+    {#app-nav header#}
+    <header class="navbar-top main-header">
+        <div class="row marLR0" xmlns="http://www.w3.org/1999/html">
+            <div class="col-sm-2 header-back text-center padT20">
+
+                <img src="{{ asset('img/back/logo_back.png') }}" alt="System Logo"/>
+
+                <label class="marT5 foot-text-color">Paketprivat</label>
+            </div>
+
+            <div class="col-sm-10 foot-text-color header-back2">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="li-nav-imag text-center">
+                        <a href="{{ path('app_back_default', {'type':2}) }}" class="padT0">
+                            <div>
+                                <img class="img-nav" src="{{ asset('img/back/enviarpkt-white.png') }}">
+                            </div>
+                            <div>
+                                <span class="fs-10">{{ 'back.sendPakect'|trans }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li-nav-imag text-center padR150">
+                        <a href="{{ path('app_back_default', {'type':1}) }}" class="padT0">
+                            <div>
+                                <img class="img-nav" src="{{ asset('img/back/travelpkt-white.png') }}">
+                            </div>
+                            <div>
+                                <span class="fs-10">{{ 'back.carryPakect'|trans }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="padT20">
+                        <a class="btn-link " href="{{ path('action_new') }}">
+                            <span class="glyphicon glyphicon-comment"></span></a>
+                    </li>
+                    <li class="padT20">
+                        <a class="btn-link " href="{{ path('action_new') }}">
+                            <span class="glyphicon glyphicon-bell"></span></a>
+                    </li>
+                    <li class="padT20">
+                        <a class="btn-link " href="{{ path('action_new') }}">
+                            <span class="glyphicon glyphicon-search"></span></a>
+                    </li>
+
+                    <li class="user-li dropdown user user-menu padT17">
+                        {#<img class="user-img" src="{{ asset('img/back/carnet.png') }}">#}
+                        <a href="#" class="dropdown-toggle pad0" data-toggle="dropdown">
+                            {% if app.user.pathPicture %}
+                                <img src="{{ asset('uploads/images/user/') }}{{ app.user.username }}/{{ app.user.pathPicture }}"
+                                     class="user-img" alt="User Image"/>
+                            {% else %}
+                                <img src="{{ asset('uploads/images/user/default_avatar.png') }}" class="user-img"
+                                     alt="User Image"/>
+                            {% endif %}
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('app_backend') }}"><span class="glyphicon glyphicon-user"></span>{{ 'back.backend'|trans }}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+                            <!-- User image -->
+                            {#<li class="user-header">#}
+                                {#{% if app.user.pathPicture %}#}
+
+                                    {#<img src="{{ asset('uploads/images/user/') }}{{ app.user.username }}/{{ app.user.pathPicture }}"#}
+                                         {#class="img-circle" alt="User Image"/>#}
+                                {#{% else %}#}
+                                    {#<img src="{{ asset('uploads/images/user/default_avatar.png') }}" class="img-circle"#}
+                                         {#alt="User Image"/>#}
+
+                                {#{% endif %}#}
+                                {#<p class="tc-000000">#}
+                                    {#{{ app.user.firstName }}{{ app.user.lastName }}#}
+                            {#</li>#}
+
+                            <!-- Menu Footer-->
+                            {#<li class="user-footer">#}
+                                {#<div class="pull-left">#}
+                                    {#<a href="{{ path('fos_user_profile_edit') }}"#}
+                                       {#class="btn btn-success btn-footer-back">{{ 'profile'|trans|capitalize }}</a>#}
+                                {#</div>#}
+                                {#<div class="pull-right">#}
+                                    {#<a href="{{ path('fos_user_security_logout') }}"#}
+                                       {#class="btn btn-danger btn-footer-back border-radius-10">#}
+                                        {#<span class="glyphicon glyphicon-off"></span>#}
+                                    {#</a>#}
+                                {#</div>#}
+                            {#</li>#}
+                        </ul>
+
+
+                    </li>
+                    <li class="padT20">
+
+                        <ul class="dropdown-menu dropdown-menu-xs dropdown-menu-language padT0 ul-dropdown">
+
+                            {% set uri = app.request.pathInfo %}
+                            {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
+                            {#{% for key, locale in locales %}#}
+                            {#{% if key != app.request.locale %}#}
+                            {% for key, locale in locales %}
+                                {% if key != app.request.locale %}
+                                    <li class="padT10">
+                                        <a href="{{ path('app_front_switch_language',{'uri':app.request.pathInfo,'lng':key,'params':params}) }}">
+                                            {{ locale }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+
+
+
+                            {#<li class="">#}
+                            {#<a href="{{ path('app_front_switch_language',{'uri':app.request.pathInfo,'lng':'en','params':params}) }}">#}
+                            {#EN#}
+                            {#</a>#}
+                            {#</li>#}
+                            {#<li class="">#}
+                            {#<a href="{{ path('app_front_switch_language',{'uri':app.request.pathInfo,'lng':'es','params':params}) }}">#}
+                            {#ES#}
+                            {#</a>#}
+                            {#</li>#}
+                            {#{% endif %}#}
+                            {#{% endfor %}#}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    {#end app-nav header#}
+{% endblock %}
+{% block footer_content %}
+    <div class="row marLR0 footer-back col-sm-12">
+        <div class="footer-content col-sm-2">
+            <ul>
+                <li>
+                    <a class="btn-link">About</a>
+                </li>
+                <li>
+                    <a class="btn-link">How its work</a>
+
+                </li>
+                <li>
+                    <a class="btn-link">Safely</a>
+
+                </li>
+                <li>
+                    <a class="btn-link">Press</a>
+
+                </li>
+                <li>
+                    <a class="btn-link">Job</a>
+
+                </li>
+            </ul>
+        </div>
+        <div class="footer-content col-sm-2">
+            <ul>
+                <li>
+
+                    <a class="btn-link">Faqs</a>
+                </li>
+                <li>
+                    <a class="btn-link">Privacy</a>
+
+                </li>
+                <li>
+                    <a class="btn-link">Terms</a>
+
+                </li>
+            </ul>
+        </div>
+        <div class="footer-content col-sm-8 text-right">
+            <div class="col-sm-12">
+                <ul>
+                    <li>
+                        <a class="btn-link padR165">Contact</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-12 padR100">
+                <a href="#"><img src="{{ asset('img/back/facebook_back.png') }}" class="img-social-net-first"></a>
+                <a href="#"><img src="{{ asset('img/back/twitter_back.png') }}" class="img-social-net"></a>
+                <a href="#"><img src="{{ asset('img/back/googleplus_back.png') }}" class="img-social-net"></a>
+            </div>
+        </div>
+        <div class="col-sm-12 foot-last">
+            Copyright,2015. Terms of use. Privacy policy
+        </div>
+    </div>
+{% endblock footer_content %}
+
+
+{#{% block body_end_before_js %}#}
+    {#{% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}#}
+        {#<div class="modal fade" id="modal-login">#}
+            {#<div class="modal-dialog modal-dialog-dimensions">#}
+                {#<div class="modal-content">#}
+                    {#<div class="modal-header text-center">#}
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        {#<img src="{{ asset('img/logo_couch-03.png') }}" alt="Logo System" class="img-responsive center-position">#}
+                    {#</div>#}
+                    {#<div class="modal-body marT30">#}
+                        {#{{ render(controller('AppBundle:Security:login')) }}#}
+                    {#</div>#}
+                {#</div><!-- /.modal-content -->#}
+                {#<div class="modal-footer">#}
+                    {#<div class="col-sm-12 text-center">#}
+                        {#<button class="btn btn-link tc-fec107 fs-16 clearsans-medium" onclick="javascript:signUpModal()">{{ 'CREATE_AN_ACCOUNT'|trans({},'frontend') }}</button>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div><!-- /.modal-dialog -->#}
+        {#</div><!-- /.modal -->#}
+
+        {#<div class="modal fade" id="modal-sign-up">#}
+            {#<div class="modal-dialog modal-dialog-dimensions">#}
+                {#<div class="modal-content">#}
+                    {#<div class="modal-header text-center">#}
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        {#<img src="{{ asset('img/logo_couch-03.png') }}" alt="Logo System" class="img-responsive center-position">#}
+                    {#</div>#}
+                    {#<div class="modal-body marT30">#}
+                        {#{{ render(controller('AppBundle:Security:register')) }}#}
+                    {#</div>#}
+                {#</div><!-- /.modal-content -->#}
+                {#<div class="modal-footer">#}
+                    {#<div class="col-sm-12 text-center">#}
+                        {#<button class="btn btn-link tc-fec107 fs-16 clearsans-medium" onclick="javascript:loginModal()">{{ 'HAVE_AN_ACCOUNT_LOGIN'|trans({},'frontend') }}</button>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div><!-- /.modal-dialog -->#}
+        {#</div><!-- /.modal -->#}
+
+        {#<div class="modal fade" id="modal-forget-pass">#}
+            {#<div class="modal-dialog modal-dialog-dimensions">#}
+                {#<div class="modal-content">#}
+                    {#<div class="modal-header text-center">#}
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        {#<img src="{{ asset('img/logo_couch-03.png') }}" alt="Logo System" class="img-responsive center-position">#}
+                    {#</div>#}
+                    {#<div class="modal-body marT30">#}
+                        {#{{ include('FOSUserBundle:Resetting:request.html.twig') }}#}
+                    {#</div>#}
+                {#</div><!-- /.modal-content -->#}
+            {#</div><!-- /.modal-dialog -->#}
+        {#</div><!-- /.modal -->#}
+
+        {#&#123;&#35;{% block body_section_login %}{% endblock %}&#35;&#125;#}
+        {#&#123;&#35;{% block body_section_register %}{% endblock %}&#35;&#125;#}
+        {#&#123;&#35;{% block body_section_reset_confirm %}{% endblock %}&#35;&#125;#}
+
+    {#{% endif %}#}
+
+    {#<div class="modal-background"></div>#}
+
+    {#&#123;&#35;{{ travel.html() }}&#35;&#125;#}
+    {#&#123;&#35;{% if searchData is defined and searchData is not empty %}&#35;&#125;#}
+    {#&#123;&#35;{{ location.html(searchData) }}&#35;&#125;#}
+    {#&#123;&#35;{% else %}&#35;&#125;#}
+    {#&#123;&#35;{{ location.html() }}&#35;&#125;#}
+    {#&#123;&#35;{% endif %}&#35;&#125;#}
+{#{% endblock body_end_before_js %}#}
+

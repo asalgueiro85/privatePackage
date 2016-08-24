@@ -1,0 +1,14 @@
+.container {
+    /*padding: 0px 100px 0px 100px;*/
+    /*background: url("../img/back.png") repeat ;*/
+    background-color: #ffffff;
+    width: 80%;
+    padding: 0px;
+}
+body {
+    background: url("../img/back.png") repeat ;
+
+}
+.backFFFFFF{
+    background-color: #ffffff;
+}

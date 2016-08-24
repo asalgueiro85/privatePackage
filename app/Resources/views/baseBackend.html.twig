@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+{% block html_tag %}
+<html lang="{{ app.request.locale }}" ng-app="paketprivat">
+{% endblock html_tag %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}{% endblock %}"/>
+    <meta name="keywords" content="{% block keywords %}{% endblock %}"/>
+    <meta name="news_keywords" content="{% block newkeywords %}{% endblock %}"/>
+    <meta name="author" content="Urbinastudio"/>
+    <title>PrivatePacket | {% block title %}{% endblock title %}</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
+
+    <!-- General styles -->
+    <link href="{{ asset('components/jquery-ui/themes/base/jquery-ui.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('components/select2-2.1.0/select2.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('components/bootstrap-material-design/dist/css/roboto.min.css') }}" type="text/css"
+          rel="stylesheet">
+    <link href="{{ asset('components/bootstrap-material-design/dist/css/material.min.css') }}" type="text/css"
+          rel="stylesheet">
+    <link href="{{ asset('components/bootstrap-material-design/dist/css/ripples.min.css') }}" type="text/css"
+          rel="stylesheet">
+    <link href="{{ asset('components/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" type="text/css"
+          rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}" type="text/css"
+          rel="stylesheet">
+    {#<link href="{{ asset('components/angular-ui-select/dist/select.min.css') }}" type="text/css" rel="stylesheet">#}
+    {#<link href="{{ asset('components/swiper/dist/css/swiper.css') }}" type="text/css" rel="stylesheet">#}
+
+    <script type="text/javascript">
+        var CB_URI_IMG = "{{ asset('img/', null, true) }}";
+    </script>
+    {% block head_style %}{% endblock head_style %}
+
+</head>
+
+
+<body>
+{#<div class="col-sm-1 back-app"></div>#}
+{#<div class="container">#}
+<div class="col-sm-12 pad0 white-background">
+    {#<header class="navbar-absolute-top main-header">#}
+    {#<header class="navbar-fixed-top main-header">#}
+        {% block header_content %}{% endblock header_content %}
+    {#</header>#}
+    <nav>
+        {% block nav_content %}{% endblock nav_content %}
+    </nav>
+    <section>
+        {% block body %}
+        {% endblock body %}
+    </section>
+    <aside>
+        {% block aside_content %}
+        {% endblock aside_content %}
+    </aside>
+
+    <footer>
+        {% block footer_content %}
+        {% endblock footer_content %}
+    </footer>
+</div>
+    {#</div>#}
+
+
+{% block foot_script %}
+    <script type="text/javascript" src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('components/moment/min/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/moment/locale/'~ app.request.locale ~'.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('components/bootstrap-material-design/dist/js/ripples.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('components/bootstrap-material-design/dist/js/material.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/angular/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/select2-2.1.0/select2.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+    {#<script type="text/javascript" src="{{ asset('components/angular/angular.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/angular-route.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('components/angular-animate/angular-animate.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('components/ngstorage/ngStorage.min.js') }}"></script>#}
+
+    {#<script type="text/javascript" src="{{ asset('components/angular-ui-select/dist/select.min.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {#<script type="text/javascript" src="{{ asset('components/swiper/dist/js/swiper.jquery.min.js') }}"></script>#}
+
+    {#<!--<script type="text/javascript" src="{{ asset('js/cbModules.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbControllers.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbRoutes.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbSearchFormFactory.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbSearchService.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbSearchController.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbSearchFormController.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbZoneCarouselController.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/cbCarouselZoneDirective.js') }}"></script>-->#}
+
+    {#<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/common.js') }}"></script>#}
+
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/map/map.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/map/map-factory.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/map/map-directive-template.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/map/map-directive-resize.js') }}"></script>#}
+
+    {#<!--script type="text/javascript" src="{{ asset('js/ng/components/carousel/carousel.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/carousel/carousel-controller.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/carousel/carousel-factory.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/carousel/carousel-directive-template.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/carousel/carousel-directive-resize.js') }}"></script-->#}
+
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/swipe/swipe.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/swipe/swipe-controller.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/swipe/swipe-factory.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/swipe/swipe-directive-template.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/swipe/swipe-directive-resize.js') }}"></script>#}
+
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/search/search.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/search/search-form-controller.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/search/search-form-factory.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/components/search/search-service.js') }}"></script>#}
+
+    {#<script type="text/javascript" src="{{ asset('js/ng/init-controller.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/messages-factory.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/zonesResult-factory.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/intPlaces-controller.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/beActive-controller.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/placesToStay-controller.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/ng/waysToGetThere-controller.js') }}"></script>#}
+
+    {#<script type="text/javascript" src="{{ asset('js/cbRoutes.js') }}"></script>#}
+
+    <script type="text/javascript">
+        {% block javascripts_functions %}{% endblock javascripts_functions %}
+        $('#appbundle_action_dateFrom, #appbundle_action_dateTo, #appbundle_user_birthDate').bootstrapMaterialDatePicker({
+            format: 'DD/MM/YYYY',
+            time: false,
+            lang: "{{ app.request.locale }}"
+        });
+        $("select" ).select2({
+//            placeholder: "Seleccione..."
+//      minimumInputLength: 2
+        });
+
+        (function ($) {
+            "use strict";
+            $(function () {
+                jQuery.material.init();
+                jQuery('.alert-dismissable').delay(5000).fadeOut(1000);
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                jQuery('.search-indicators').hide();
+
+                // enabled geolocation
+//                    if(navigator.geolocation) {
+//                        navigator.geolocation.getCurrentPosition(function(location) {
+//                            var lat = location.coords.latitude;
+//                            var lng = location.coords.longitude;
+//                            jQuery('.geo_location').val(lat+','+lng);
+//                        }, function(error){
+//                            switch(error.code) {
+//                                case error.PERMISSION_DENIED:
+//                                    break;
+//                                case error.POSITION_UNAVAILABLE:
+//                                    break;
+//                                case error.TIMEOUT:
+//                                    break;
+//                                case error.UNKNOWN_ERROR:
+//                                    break;
+//                            }
+//                        });
+//                    }
+
+                {% block javascripts_document_ready %}{% endblock javascripts_document_ready %}
+            });
+        }(jQuery));
+    </script>
+{% endblock foot_script %}
+    {% block custom_javascripts %}
+    {% endblock custom_javascripts %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

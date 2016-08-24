@@ -1,0 +1,187 @@
+<div class="row col-sm-12 div-packet">
+    <div class="row col-sm-12 padB10">
+        <span class=""> <strong> {% verbatim %}{{actions.length}} {% endverbatim %} </strong> </span>
+        <span class="">Notificacion</span>
+    </div>
+    <div ng-repeat="action in actions" class="row col-sm-12 packet-result ">
+        <div ng-if="action.type == 1">
+
+        <div ng-if="action.itemPicture == null" class="col-sm-1 padl0 padR0">
+            <img class="w-h-100" src="{{ asset('uploads/images/user/default_avatar.png') }}">
+        </div>
+        <div ng-if="action.itemPicture != null" class="col-sm-1 padl0 padR0">
+            <img class="w-h-100"
+                 src="{{ asset('uploads/images/packet/') }}{% verbatim %}{{action.userPicture}}{% endverbatim %}">
+        </div>
+        <div class="row col-sm-11 contenidos clear-margin-pad">
+            <div class="col-sm-5 padL40 padR0 columna1">
+                <div ng-if="action.userPicture == null" class="col-sm-2 padl0 padR0">
+                    <img class="w-h-50" src="{{ asset('uploads/images/user/default_avatar.png') }}">
+                </div>
+                <div ng-if="action.userPicture != null" class="col-sm-2 padl0 padR0">
+                    <img class="w-h-50"
+                         src="{{ asset('uploads/images/user/') }}{% verbatim %}{{action.userNameLoggin}}{% endverbatim %}/{% verbatim %}{{action.userPicture}}{% endverbatim %}">
+                </div>
+                <div class="col-sm-10 padT5">
+                                <span class="fs-18"><strong>
+                                        {% verbatim %}
+                                             {{action.userName}}
+                                        {% endverbatim %}
+                                    </strong> </span>
+                </div>
+                <div class="row col-sm-12 padT5 lh-12">
+                                <span class="fs-12">
+                                        {% verbatim %}
+                                             {{action.itemPacket}}
+                                        {% endverbatim %} </span>
+                </div>
+
+                <div class="row col-sm-12 lh-12">
+                                <span class="text-packet">From:
+                                        {% verbatim %}
+                                             {{action.itemDateFrom}}
+                                        {% endverbatim %} ->
+                                     </span>
+
+                    <span class="text-packet">To:
+                            {% verbatim %}
+                                             {{action.itemDateTo}}
+                                        {% endverbatim %} </span>
+                </div>
+
+                <div class="row col-sm-12 text-packet lh-12">
+                    <p class="text-justify">
+                        {% verbatim %}
+                                             {{action.observation}}
+                                        {% endverbatim %}
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-5 padL40 padR0 columna1">
+                <div ng-if="action.userPicture == null" class="col-sm-4 padl0 padR0">
+                    <img class="w-h-100" src="{{ asset('uploads/images/user/default_avatar.png') }}">
+                </div>
+                <div ng-if="action.userPicture != null" class="col-sm-4 padl0 padR0">
+                    <img class="w-h-100"
+                         src="{{ asset('uploads/images/packet/') }}{% verbatim %}{{action.myItemPicture}}{% endverbatim %}">
+                </div>
+
+                <div class="lh-12 col-sm-8">
+                    <div class="row col-sm-12 padT5">
+                                <span class="fs-12">
+                                        {% verbatim %}
+                                             {{action.myPacket}}
+                                        {% endverbatim %} </span>
+                    </div>
+                    <div class="row col-sm-12 padT5">
+                                <span class="fs-12">
+                                        {% verbatim %}
+                                             {{action.price}}
+                                        {% endverbatim %} </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-2 border-L-gray columna1 padL5 padR5">
+                <div class="text-center padt5">
+                    <a class="fs-12 color-33b5e6"
+                       href="{% verbatim %}{{action.edit_url}}{% endverbatim %}">Accept&nbsp;</a>
+                </div>
+                <div class="text-center padt5">
+                    <a class="fs-12 tc-ea371f" href="#" ng-click="backendCtrl.delete_items(action.id)">Reject</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div ng-if="action.type == 2">
+
+            <div ng-if="action.itemPicture == null" class="col-sm-1 padl0 padR0">
+                <img class="w-h-100" src="{{ asset('uploads/images/user/default_avatar.png') }}">
+            </div>
+            <div ng-if="action.itemPicture != null" class="col-sm-1 padl0 padR0">
+                <img class="w-h-100"
+                     src="{{ asset('uploads/images/packet/') }}{% verbatim %}{{action.userPicture}}{% endverbatim %}">
+            </div>
+            <div class="row col-sm-11 contenidos clear-margin-pad">
+                <div class="col-sm-5 padL40 padR0 columna1">
+                    <div ng-if="action.userPicture == null" class="col-sm-2 padl0 padR0">
+                        <img class="w-h-50" src="{{ asset('uploads/images/user/default_avatar.png') }}">
+                    </div>
+                    <div ng-if="action.userPicture != null" class="col-sm-2 padl0 padR0">
+                        <img class="w-h-50"
+                             src="{{ asset('uploads/images/user/') }}{% verbatim %}{{action.userNameLoggin}}{% endverbatim %}/{% verbatim %}{{action.userPicture}}{% endverbatim %}">
+                    </div>
+                    <div class="col-sm-10 padT5">
+                                <span class="fs-18"><strong>
+                                        {% verbatim %}
+                                             {{action.userName}}
+                                        {% endverbatim %}
+                                    </strong> </span>
+                    </div>
+                    <div class="row col-sm-12 padT5 lh-12">
+                                <span class="fs-12">
+                                        {% verbatim %}
+                                             {{action.itemPacket}}
+                                        {% endverbatim %} </span>
+                    </div>
+
+                    <div class="row col-sm-12 lh-12">
+                                <span class="text-packet">From:
+                                    {% verbatim %}
+                                             {{action.itemDateFrom}}
+                                        {% endverbatim %} ->
+                                     </span>
+
+                    <span class="text-packet">To:
+                        {% verbatim %}
+                                             {{action.itemDateTo}}
+                                        {% endverbatim %} </span>
+                    </div>
+
+                    <div class="row col-sm-12 text-packet lh-12">
+                        <p class="text-justify">
+                            {% verbatim %}
+                                             {{action.observation}}
+                                        {% endverbatim %}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-5 padL40 padR0 columna1">
+                    <div ng-if="action.userPicture == null" class="col-sm-4 padl0 padR0">
+                        <img class="w-h-100" src="{{ asset('uploads/images/user/default_avatar.png') }}">
+                    </div>
+                    <div ng-if="action.userPicture != null" class="col-sm-4 padl0 padR0">
+                        <img class="w-h-100"
+                             src="{{ asset('uploads/images/packet/') }}{% verbatim %}{{action.myItemPicture}}{% endverbatim %}">
+                    </div>
+
+                    <div class="lh-12 col-sm-8">
+                        <div class="row col-sm-12 padT5">
+                                <span class="fs-12">
+                                        {% verbatim %}
+                                             {{action.myPacket}}
+                                        {% endverbatim %} </span>
+                        </div>
+                        <div class="row col-sm-12 padT5">
+                                <span class="fs-12">
+                                        {% verbatim %}
+                                             {{action.price}}
+                                        {% endverbatim %} </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-2 border-L-gray columna1 padL5 padR5">
+                    <div class="text-center padt5">
+                        <a class="fs-12 color-33b5e6"
+                           href="{% verbatim %}{{action.edit_url}}{% endverbatim %}">Accept&nbsp;</a>
+                    </div>
+                    <div class="text-center padt5">
+                        <a class="fs-12 tc-ea371f" href="#" ng-click="backendCtrl.delete_items(action.id)">Reject</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /(es|en)/connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /(es|en)/login
+
+facebook_login:
+    pattern: /(es|en)/login/check-facebook
+
+google_login:
+    pattern: /(es|en)/login/check-google

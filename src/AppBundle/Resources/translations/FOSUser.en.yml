@@ -1,0 +1,10 @@
+form:
+    register:           USER_REGISTRATION
+    login:              LOGIN
+    firstName:          First name
+    lastName:           Last name
+    dateBirth:          Date birth
+    profile:            PROFILE
+    profile_min:        Profile
+    logout_min:         Logout
+

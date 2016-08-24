@@ -1,0 +1,16 @@
+{% macro css() %}
+  <link rel="stylesheet" href="{{ asset('components/select2/dist/css/select2.min.css') }}" />
+{% endmacro %}
+
+{% macro js(locale) %}
+  <script type="text/javascript" src="{{ asset('components/select2/dist/js/select2.min.js') }}"></script>
+  {% set localeUrl = 'components/select2/dist/js/i18n/'~locale|default('en')~'.js' %}
+  <script type="text/javascript" src="{{ asset(localeUrl) }}"></script>
+{% endmacro %}
+{#
+
+{% macro normal_component() %}
+  if ($.fn.select2) {
+    $('.select2-component').select2();
+  }
+{% endmacro %}#}

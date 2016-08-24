@@ -1,0 +1,97 @@
+<div class="row col-sm-12 div-packet">
+    <div class="row col-sm-12 padB10">
+        <span class=""> <strong> {% verbatim %}{{actions.length}} {% endverbatim %} </strong> </span>
+        <span ng-hide="packet" class="">Packets</span>
+        <span ng-hide="trip" class="">Trips</span>
+    </div>
+    <div ng-repeat="action in actions" class="row col-sm-12 packet-result ">
+        <div ng-if="action.pathPicture == null" class="col-sm-1 padl0 padR0">
+            <img class="w-h-100" src="{{ asset('uploads/images/user/default_avatar.png') }}">
+        </div>
+        <div ng-if="action.pathPicture != null" class="col-sm-1 padl0 padR0">
+            <img class="w-h-100"
+                 src="{{ asset('uploads/images/packet/') }}{% verbatim %}{{action.pathPicture}}{% endverbatim %}">
+        </div>
+        <div class="row col-sm-11 contenidos padt5 padb5 clear-margin-pad">
+            <div class="col-sm-8 padL40 padR0 columna1">
+                <div class="col-sm-12 padT5 padB5">
+                                <span class="fs-18"><strong>
+                                        {% verbatim %}
+                                             {{action.packet}}
+                                        {% endverbatim %}
+                                    </strong> </span>
+                </div>
+                <div class="col-sm-12 text-packet padB5">
+                    <div class="col-sm-2 padR0 padl0">
+                        <img class="img-packet-result" src="{{ asset('img/back/paketes.png') }}">
+                                    <span class="">{% verbatim %}
+                                             {{action.weight}}
+                                        {% endverbatim %}kg</span>
+                    </div>
+                    <div class="col-sm-2 padR0 padl0">
+                        <img class="img-packet-result" src="{{ asset('img/back/paketes.png') }}">
+                        <span class="">Large</span>
+                    </div>
+                    <div class="col-sm-4 padR0 padl0 text-right">
+                        <img class="img-packet-result" src="{{ asset('img/back/pin_from_blue.png') }}">
+                                    <span class="">From {% verbatim %}
+                                             {{action.from}}
+                                        {% endverbatim %}</span>
+                    </div>
+                    <div class="col-sm-4 padR0 padl0 text-right">
+                        <img class="img-packet-result" src="{{ asset('img/back/pin_to_blue.png') }}">
+                                    <span class="">To {% verbatim %}
+                                             {{action.to}}
+                                        {% endverbatim %}</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 text-packet">
+                    <p class="text-justify">
+                        {% verbatim %}
+                                             {{action.observation}}
+                                        {% endverbatim %}
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-2 border-L-R-gray columna1 padL5 padR5">
+                <div class="text-center padt5">
+                    {#<input type="hidden" id="temp_id" name="temp_id" value="sdf"/>#}
+                    {#<input type="hidden" name="type" id="type" value=""/>#}
+                    {#{% set foo = {% verbatim %}{{ action.id }}{% endverbatim %} %}#}
+                    {#<script type="text/javascript">#}
+                    {#{% set foo = $('#temp_id').val() %}#}
+                    {#</script>#}
+                    <a class="fs-12 color-33b5e6"
+                       href="{% verbatim %}{{action.edit_url}}{% endverbatim %}">Edit&nbsp;</a>
+                    <a class="fs-12 color-2e819d" href="{% verbatim %}{{action.search_url}}{% endverbatim %}">Search&nbsp;</a>
+                    <a class="fs-12 tc-ea371f" href="#" ng-click="backendCtrl.delete_items(action.id)">Delete</a>
+                </div>
+                <div class="text-center">
+                    <img class="" src="{{ asset('img/back/paketes.png') }}">
+                </div>
+                <div class="text-center">
+                    <span class="fs-12">Created</span>
+                </div>
+                <div class="text-center">
+                    <span class="color-33b5e6 fs-10"><strong>Sunday,January 17th,2016</strong></span>
+                </div>
+            </div>
+            <div class="row col-sm-2 columna1 text-center padT10">
+                <div class="">
+                    <img class="" src="{{ asset('img/back/paketes.png') }}">
+                </div>
+                {#<div class="v-align-b">#}
+                <span class="fs-12 v-align-b">Request</span>
+                {#</div>#}
+                <div class="v-align-b">
+                                <span class="color-33b5e6"><strong>{% verbatim %}
+                                             {{action.request}}
+                                        {% endverbatim %}</strong></span>
+                </div>
+                <div class="">
+                    <span class="fs-10">travelers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

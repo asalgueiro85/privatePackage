@@ -1,0 +1,234 @@
+{% extends 'AppBundle::layoutFrontend.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block custom_javascripts %}
+{% endblock custom_javascripts %}
+
+{% block header_content %}
+    {#app-nav header#}
+    <header class="main-header login-header">
+        {#<header class="navbar-fixed-top main-header">#}
+        <div class="row from-nav header-login">
+            <div class=" row col-sm-3 marL-20 marB30">
+
+                <img src="{{ asset('img/logo_app.png') }}" alt="System Logo"/>
+
+                <label class="marT5 foot-text-color">Paketprivat</label>
+            </div>
+
+            <div class="col-sm-9 foot-text-color">
+                <ul class="nav navbar-nav navbar-right marR-20">
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'About'|trans }}</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'howwork'|trans }}</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'Safety'|trans }}</a>
+                    </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li>
+                            <a class="btn btn-link marT5 marB5"
+                               href="{{ path('fos_user_security_logout') }}">{{ 'logout'|trans }}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ path('app_register') }}"
+                               class="btn btn-link marT5 marB5">{{ 'sing'|trans|capitalize }}</a>
+
+                            <p class="currentNavActive" style="transform: translateX(36px);"></p>
+                        </li>
+                        <li>
+                            <a class="btn btn-link marT5 marB5"
+                               href="{{ path ('app_login') }}">{{ 'login'|trans|capitalize }}</a>
+
+                            {#<a class="btn btn-link marT5 marB5" href="{{ path('fos_user_security_login') }}">{{ 'login'|trans|capitalize }}</a>#}
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </header>
+    {#end app-nav header#}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <form class="form-register" method="post" action="{{ path('fos_user_registration_register') }}">
+                {#<input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>#}
+                <div class="row marTB50">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="text-center fs-16 c-2d80a2 marB25"><strong>{{ 'form.register'|trans }}</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11 col-sm-offset-1">
+                            {#{{ form_widget(form) }}#}
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6">*</p>
+
+                                        <p class="col-sm-10">{{ 'username'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="email" required="required" value="">#}
+                                    {{ form_widget(form.username) }}
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6">*</p>
+
+                                        <p class="col-sm-10">{{ 'email'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="email" required="required" value="">#}
+                                    {{ form_widget(form.email) }}
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6">*</p>
+
+                                        <p class="col-sm-10">{{ 'password'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="password" required="required">#}
+                                    {{ form_widget(form.plainPassword) }}
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6">*</p>
+
+                                        <p class="col-sm-10">{{ 'confirm_password'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="password" required="required">
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6">*</p>
+
+                                        <p class="col-sm-10">{{ 'first_name'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="text" required="required" value="{{ user.firstName }}">#}
+                                    {{ form_widget(form.firstName) }}
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6">*</p>
+
+                                        <p class="col-sm-10">{{ 'last_name'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="text" required="required" value="{{ user.lastName }}">#}
+                                    {{ form_widget(form.lastName) }}
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6"></p>
+
+                                        <p class="col-sm-10">{{ 'form.register.country'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="text">#}
+                                    {{ form_widget(form.country) }}
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6"></p>
+
+                                        <p class="col-sm-10">{{ 'form.register.city'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="text">#}
+                                    {{ form_widget(form.city) }}
+                                </div>
+                            </div>
+                            <div class="row register-fields">
+                                <div class="col-sm-5">
+                                    <div class="register-fields-label">
+                                        <p class=" col-sm-2 c-33b5e6"></p>
+
+                                        <p class="col-sm-10">{{ 'form.register.birthday'|trans }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    {#<input class="form-control" type="text">#}
+                                    {{ form_widget(form.birthDate) }}
+                                    {{ form_rest(form) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="checkbox col-sm-12">
+                                    <label class="fs-11 pull-left">
+                                        <input type="checkbox" name="terms" value="on" required="required"
+                                               class="ios-switch-old">
+                                        <span class="">{{ 'I_AGREE_WITH_'|trans }}</span>
+                                        <a href="#" class="c-2d80a2">{{ 'TERMS_AND_CONDITIONS'|trans }}</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6 col-sm-offset-3 text-center">
+                            <button type="submit"
+                                    class="btn btn-block btn-success btn-register bc-2d819d">{{ 'registration.submit'|trans }}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="col-sm-6 text-center register-button">
+                                <a href="{{ hwi_oauth_login_url('facebook') }}" class="btn btn-facebook fs-13">
+                                    {{ 'form.register.facebook'|trans }}
+                                </a>
+                            </div>
+                            <div class="col-sm-6 text-center register-button">
+                                <a href="{{ hwi_oauth_login_url('google') }}" class="btn btn-google fs-13">
+                                    {{ 'form.register.google'|trans }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-12 text-center fs-15 marTB10">Already have you an account?</p>
+
+                        <div class="col-sm-4 col-sm-offset-4 text-center">
+                            <a href="{{ path('app_login') }}"
+                               class="btn btn-block btn-success btn-register bc-33b5e6">{{ 'login'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock body %}

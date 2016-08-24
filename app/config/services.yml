@@ -1,0 +1,24 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    authentication.handler.login_success_handler:
+        class:  AppBundle\Security\Authentication\Handler\LoginSuccessHandler
+        arguments:  [@router, @security.context]
+    logout.handler.logout_success_handler:
+        class:  AppBundle\Security\Logout\Handler\LogoutSuccessHandler
+        arguments:  [@router, @security.context]
+    authentication.handler.login_failure_handler:
+        class:  AppBundle\Security\Authorization\Handler\AccessDeniedHandler
+        arguments:  [@router, @security.context]
+
+    app.twig.app_extension:
+        class: AppBundle\Twig\AppExtension
+        tags:
+            - { name: twig.extension }

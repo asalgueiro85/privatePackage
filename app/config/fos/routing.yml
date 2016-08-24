@@ -1,0 +1,17 @@
+# FOSUser Routing
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:    /(es|en)/
+
+##JSRouting Routing
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+#FOSOAuthServer Routing
+#fos_oauth_server_token:
+#    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+#    prefix:    /
+#
+#fos_oauth_server_authorize:
+#    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+#    prefix:    /

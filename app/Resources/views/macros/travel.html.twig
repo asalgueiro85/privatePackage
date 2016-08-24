@@ -1,0 +1,149 @@
+{% macro html() %}
+    <div class="travel-container hide padL10 padR10 padT10 col-md-3">
+        <div class="form-group">
+            <label class="control-label pull-left marR5">{{ 'TRAVEL_BY'|trans({},'frontend') }}</label>
+            <div class="input-group" style="width: 65%;">
+                <select class="form-control input-sm" name="travel_by">
+                    <option value="0">{{ 'SELECT_BY'|trans({},'frontend') }}</option>
+                    <option value="car">{{ 'CAR'|trans({},'frontend') }}</option>
+                    <option value="train">{{ 'TRAIN'|trans({},'frontend') }}</option>
+                    <option value="flight">{{ 'PLAIN'|trans({},'frontend') }}</option>
+                    <option value="car_train">{{ 'CAR_or_TRAIN'|trans({},'frontend') }}</option>
+                    <option value="car_flight">{{ 'CAR_or_PLAIN'|trans({},'frontend') }}</option>
+                    <option value="train_flight">{{ 'TRAIN_or_PLAIN'|trans({},'frontend') }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label pull-left marR5 padT5">{{ 'TRAVEL_TIME_MAX'|trans({},'frontend') }}</label>
+            <div class="input-group">
+                <input type="number" class="form-control input-sm" min="0" name="travel_time" id="travel_time">
+                <span class="input-group-addon">hrs.</span>
+            </div>
+        </div>
+        <div class="from-group">
+            <button type="button" class="btn btn-sm btn-default pull-right trash-travel">
+                <span class="glyphicon glyphicon-trash text-muted"></span>
+            </button>
+        </div>
+  </div>
+{% endmacro %}
+<script>
+{% macro js_ready(component) %}
+var $component = jQuery('{{ component }}');
+$component.parent().append('<p id="travel_container" style="cursor: text;margin:0;height: 22px;">&nbsp</p>');
+var $newComponent = jQuery('#travel_container');
+$newComponent.attr('class', $component.attr('class'));
+$newComponent.removeClass('{{ component }}');
+$newComponent.height($component.height());
+$component.addClass('hide');
+
+$newComponent.on({
+    click: function () {
+        var $this = jQuery(this);
+        var travelContainer = jQuery('.travel-container');
+        if (travelContainer.hasClass('hide')) {
+            var $window = $(window);
+            var viewport = {
+                top: $window.scrollTop(),
+                bottom: $window.scrollTop() + $window.height()
+            };
+            var $parent = $this.parent();
+            var offset = $parent.offset();
+            var newDirection = null;
+            offset.bottom = offset.top + $parent.outerHeight(false);
+            var container = {
+                height: $parent.outerHeight(false)
+            };
+            container.top = offset.top;
+            container.bottom = offset.top + container.height;
+            var isCurrentlyAbove = travelContainer.hasClass('travel-dropdown--above');
+            var isCurrentlyBelow = travelContainer.hasClass('travel-dropdown--below');
+            var dropdown = {
+                height: 123
+            };
+            var enoughRoomAbove = viewport.top < (offset.top - dropdown.height);
+            var enoughRoomBelow = viewport.bottom > (offset.bottom + dropdown.height);
+            var css = {
+                left: offset.left,
+                top: container.bottom
+            };
+            if (!isCurrentlyAbove && !isCurrentlyBelow) {
+                newDirection = 'below';
+            }
+            if (!enoughRoomBelow && enoughRoomAbove && !isCurrentlyAbove) {
+                newDirection = 'above';
+            } else if (!enoughRoomAbove && enoughRoomBelow && isCurrentlyAbove) {
+                newDirection = 'below';
+            }
+            if (newDirection == 'above' || (isCurrentlyAbove && newDirection !== 'below')) {
+                css.top = container.top - dropdown.height - 33;
+            }
+            if (newDirection != null) {
+                travelContainer
+                    .removeClass('travel-dropdown--below travel-dropdown--above hide')
+                    .addClass('travel-dropdown--' + newDirection);
+            }
+
+            travelContainer.css(css);
+            travelContainer.addClass('show');
+        } else {
+            travelContainer.removeClass('show');
+            travelContainer.addClass('hide');
+        }
+    }
+});
+jQuery('select[name="travel_by"]').on({
+    change: function () {
+        changeTravel();
+    }
+});
+jQuery('#travel_time').on({
+    keypress: function (event) {
+        if (event.which < 48 || event.which > 57) {
+            event.preventDefault();
+        }
+    },
+    change: function () {
+        changeTravel();
+    }
+});
+jQuery(document.body).on('mousedown', function (e) {
+    var $target = $(e.target);
+    var $selectTravelContainer = $target.closest('.travel-container');
+    var $selectComponent = $target.closest('{{ component }}');
+    if ($selectTravelContainer.length > 0 || $selectComponent.length > 0) {
+        return;
+    } else {
+        var travelContainer = jQuery('.travel-container');
+        if (travelContainer.hasClass('show')) {
+            travelContainer.removeClass('show').addClass('hide');
+        }
+    }
+});
+jQuery('button.trash-travel').on('click', function () {
+    jQuery('select[name="travel_by"]').val("0");
+    jQuery('#travel_time').val(0);
+    changeTravel();
+});
+{% endmacro %}
+
+{% macro js_function(component) %}
+function changeTravel() {
+    var text = [];
+    var values = {};
+    var by = jQuery('select[name="travel_by"]');
+    if (by.val() != '0') {
+        text.push(by.children('option:selected').text());
+        values.by = by.val();
+    }
+    var travel_time = jQuery('#travel_time').val();
+    if (travel_time != false && travel_time > 0) {
+        text.push(travel_time + 'hrs');
+        values.time = travel_time;
+    }
+    jQuery('{{ component }}').val(JSON.stringify(values));
+    jQuery('#travel_container').text(text.join(','));
+    jQuery('{{ component }}').change();
+}
+{% endmacro %}

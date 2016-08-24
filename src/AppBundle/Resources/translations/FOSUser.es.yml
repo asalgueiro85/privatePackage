@@ -1,0 +1,7 @@
+form:
+    register:           REGISTRO DE USUARIO
+    login:              LOGIN
+    firstName:          Nombre(s)
+    lastName:           Apellidos
+    dateBirth:          Fecha de nacimiento
+    profile:            Perfil

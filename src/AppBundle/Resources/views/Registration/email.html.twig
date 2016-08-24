@@ -1,0 +1,23 @@
+{% block subject %}
+{% autoescape false %}
+{{ 'registration.email.subject'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{#{{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}#}
+    
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+    <div class="row col-sm-12">
+        <div class="col-sm-2">
+            <img src="{{ asset('img/logo_app.png') }}">
+        </div>
+        <div class="col-sm-12">
+            <p>Esto es una prueba de registro PP {{ user.username }}, {{ confirmationUrl }}</p>
+        </div>
+    </div>
+
+
+{% endblock %}

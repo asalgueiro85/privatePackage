@@ -1,0 +1,475 @@
+{% extends '@App/layoutBackend.html.twig' %}
+{% block head_style %}
+{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('components/jasny/file-upload/bootstrap-fileupload.min.css') }}" type="text/css" media="all">
+    <script type="text/javascript" src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
+{% endblock head_style %}
+{% block body -%}
+    <div class="row div-back" xmlns="http://www.w3.org/1999/html" ng-controller="AppBackendController as backendCtrl">
+        <div class="col-sm-9 white-background border-radius-10 border-solid-blue">
+            <div id="div_backend_profile" class="nav-tabs-custom" ng-show="backendCtrl.mainMenuTab === 1">
+                <ul id="ul_tabs" class="nav nav-tabs broder-radius-top">
+                    <li role="presentation" ng-class="{ active:backendCtrl.profileItemTab === 1 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.profileItemTab = 1">
+                            Personal Information
+                        </a>
+                    </li>
+                    <li role="presentation" ng-class="{ active:backendCtrl.profileItemTab === 2 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.profileItemTab = 2">Preferences</a>
+                    </li>
+                </ul>
+                <div class="tab-content pad20">
+                    <div id="personalInformation" class="chart" ng-show="backendCtrl.profileItemTab === 1">
+                        <div class="row" style="margin-left: 0px; margin-right: 0px;">
+                            <form action="{{ path('user_update') }}" {{ form_start(form) }}
+                            {#<input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>#}
+                            <input type="hidden" name="_method" value="put"/>
+                            <input type="hidden" name="id" value="{{ app.user.id }}"/>
+                            <input type="hidden" name="type" id="type" value=""/>
+                            <input type="hidden" name="temp_id" id="temp_id" value="{{ path('action') }}"/>
+
+                            <div class="col-sm-2">
+
+
+                                {#<div class="row">#}
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-preview thumbnail user-img-profile" >
+                                        {% if app.user.pathPicture %}
+                                            <img id="dir_foto" src="{{ asset('uploads/images/user/') }}{{ app.user.username }}/{{ app.user.pathPicture }}"
+                                                 alt="User Image"/>
+                                        {% else %}
+                                            <img id="dir_foto" src="{{ asset('uploads/images/user/default_avatar.png') }}"
+                                                 alt="User Image"/>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row">
+                                                <span class="btn-file marL17">
+                                                    <span class="fileupload-new">Select picture</span>
+                                                    <span class="fileupload-exists">Change picture</span>
+                                                    {#<input id="appbundle_user[picture]" id="appbundle_user_picture" class="" type="file" />#}
+                                                    {{ form_widget(form.picture) }}
+                                                </span>
+                                        <a id="btn-remove" href="#" class="a-fileupload fileupload-exists" data-dismiss="fileupload">Remove picture</a>
+                                    </div>
+                                </div>
+                                {#</div>#}
+
+
+
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-sm-6 padl0">
+                                        <div class="col-sm-12 div-form color-form-back">
+                                            <div class="form-group col-sm-4 div-form-label">
+                                                {{ form_label(form.firstName) }}
+                                            </div>
+                                            <div class="form-group col-sm-8 div-form-left">
+                                                {{ form_widget(form.firstName) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 padl0">
+                                        <div class="col-sm-12 div-form color-form-back">
+                                            <div class="form-group col-sm-4 div-form-label">
+                                                {{ form_label(form.lastName) }}
+                                            </div>
+
+                                            <div class="form-group col-sm-8 div-form-left">
+                                                {{ form_widget(form.lastName) }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 padl0 padlT30">
+                                        <div class="col-sm-12 div-form color-form-back">
+                                            <div class="form-group col-sm-3 div-form-label">
+                                                {{ form_label(form.birthDate) }}
+                                            </div>
+
+                                            <div class="form-group col-sm-9 div-form-left padT9">
+                                                {{ form_widget(form.birthDate) }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6 padl0 padlT30">
+                                        <div class="row div-radio">
+                                            <div class="radio">
+                                                <span>{{ 'Genre'|trans }}</span>
+                                                <label class="radio-label">
+                                                    <div class="row">
+                                                        <input id="radio_male" class="radio" name="appbundle_user[sex]" value="1"
+                                                               checked="checked" type="radio">
+                                                        <span class="circle"></span>
+                                                        <span class="check"></span>
+                                                    </div>
+                                                    <div class="row radio-M3">
+                                                        <div class="genre-male"></div>
+                                                        <div class="label-M5">{{ 'Male'|trans }}</div>
+                                                    </div>
+
+
+                                                </label>
+
+                                                <label class="radio-label">
+                                                    <div class="row">
+                                                        <input id="radio_female" name="appbundle_user[sex]" value="0" type="radio">
+                                                        <span class="circle"></span>
+                                                        <span class="check"></span>
+                                                    </div>
+                                                    <div class="row radio-M3">
+                                                        <div class="genre-male labelM5"></div>
+                                                        <div class="label-M5">{{ 'Female'|trans }}</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8 padl0 padlT30 col-sm-offset-2">
+                                        <div class="col-sm-12 div-form color-form-back">
+                                            <div class="form-group col-sm-4 div-form-label">
+                                                <label for="location">Location: </label>
+                                            </div>
+                                            <div class="form-group col-sm-8 div-form-left">
+                                                <input type="text" name="location" id="location" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row geo-details">
+                                    <div class="col-sm-6 padl0 padlT30">
+                                        <div class="col-sm-12 div-form color-form-back">
+                                            <div class="form-group col-sm-4 div-form-label">
+                                                {#{{ form_label(form.country) }}#}
+                                                <label class="required" for="appbundle_user_country">Country</label>
+                                            </div>
+
+                                            <div class="form-group col-sm-8 div-form-left">
+                                                {#{{ form_widget(form.country).value }}#}
+                                                <input readonly type="text" data-geo="country" value=""
+                                                       id="setting_country" name="setting_country" class="form-control">
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6 padl0 padlT30">
+
+                                        <div class="col-sm-12 div-form color-form-back">
+                                            <div class="form-group col-sm-4 div-form-label">
+                                                {#{{ form_label(form.city) }}#}
+                                                <label class="required" for="appbundle_user_city">City</label>
+                                            </div>
+
+                                            <div class="form-group col-sm-8 div-form-left">
+                                                {#{{ form_widget(form.city) }}#}
+                                                <input readonly type="text" data-geo="administrative_area_level_2"
+                                                       value="" id="setting_city" name="setting_city"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 padl0 padlT30">
+                                        <div class="col-sm-12 div-form color-form-back">
+                                            <div class="form-group col-sm-7 div-form-label">
+                                                {{ form_label(form.lng) }}
+                                            </div>
+
+                                            <div class="form-group col-sm-5 div-form-left padR0 padl0">
+                                                {{ form_widget(form.lng) }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 padl0 padlT30 ">
+                                        <div class="form-group div-form-text color-form-back">
+                                            {{ form_widget(form.comments) }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 button-save col-sm-offset-7">
+                                        {#<div class="col-sm-4 col-sm-offset-4 text-center">#}
+                                        <button class="btn btn-block btn-success btn-register fs-12 bc-33b5e6"
+                                                type="submit"> Save changes
+                                        </button>
+                                        {#</div>#}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_widget(form._token) }}
+                            </form>
+                        </div>
+                    </div>
+                    <div id="preferences" class="chart" ng-show="backendCtrl.profileItemTab === 2">
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset1">
+                                <img src="{{ asset('img/back/senders.png') }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="div_backend_items" class="nav-tabs-custom" ng-show="backendCtrl.mainMenuTab === 2">
+                <ul id="ul_tabs" class="nav nav-tabs broder-radius-top">
+                    <li role="presentation" ng-class="{ active:backendCtrl.ItemTab === 1 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.ItemTab = 1">
+                            {{ 'back.openRequest'|trans }}
+                        </a>
+                    </li>
+                    <li role="presentation" ng-class="{ active:backendCtrl.ItemTab === 2 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.ItemTab = 2">{{ 'back.upcoming'|trans }}</a>
+                    </li>
+                    <li role="presentation" ng-class="{ active:backendCtrl.ItemTab === 3 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.ItemTab = 3">{{ 'back.past'|trans }}</a>
+                    </li>
+                </ul>
+                <div class="tab-content pad20">
+                    <div id="open" class="chart" ng-show="backendCtrl.ItemTab === 1">
+                        {#<div class="row" style="margin-left: 0px; margin-right: 0px;">#}
+                        {% include '@App/Include/backendItems.html.twig' %}
+                        {#</div>#}
+                    </div>
+                    <div id="upcoming" class="chart" ng-show="backendCtrl.ItemTab === 2">
+                        {% include '@App/Include/backendItems.html.twig' %}
+                    </div>
+                    <div id="past" class="chart" ng-show="backendCtrl.ItemTab === 3">
+                        {% include '@App/Include/backendItems.html.twig' %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="div_backend_items" class="nav-tabs-custom" ng-show="backendCtrl.mainMenuTab === 3">
+                <ul id="ul_tabs" class="nav nav-tabs broder-radius-top">
+                    <li role="presentation" ng-class="{ active:backendCtrl.TripTab === 1 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.TripTab = 1">
+                            {{ 'back.openRequest'|trans }}
+                        </a>
+                    </li>
+                    <li role="presentation" ng-class="{ active:backendCtrl.TripTab === 2 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.TripTab = 2">{{ 'back.upcoming'|trans }}</a>
+                    </li>
+                    <li role="presentation" ng-class="{ active:backendCtrl.TripTab === 3 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.TripTab = 3">{{ 'back.past'|trans }}</a>
+                    </li>
+                </ul>
+                <div class="tab-content pad20">
+                    <div id="open" class="chart" ng-show="backendCtrl.TripTab === 1">
+                        {#<div class="row" style="margin-left: 0px; margin-right: 0px;">#}
+                        {% include '@App/Include/backendItems.html.twig' %}
+                        {#</div>#}
+                    </div>
+                    <div id="upcoming" class="chart" ng-show="backendCtrl.TripTab === 2">
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset1">
+                                tab upcoming request
+                            </div>
+                        </div>
+                    </div>
+                    <div id="past" class="chart" ng-show="backendCtrl.TripTab === 3">
+                        past
+                    </div>
+                </div>
+            </div>
+
+            <div id="div_backend_items" class="nav-tabs-custom" ng-show="backendCtrl.mainMenuTab === 4">
+                <ul id="ul_tabs" class="nav nav-tabs broder-radius-top">
+                    <li role="presentation" ng-class="{ active:backendCtrl.NotTab === 1 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.NotTab = 1">
+                            {{ 'back.openRequest'|trans }}
+                        </a>
+                    </li>
+                    <li role="presentation" ng-class="{ active:backendCtrl.NotTab === 2 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.NotTab = 2">{{ 'back.upcoming'|trans }}</a>
+                    </li>
+                    <li role="presentation" ng-class="{ active:backendCtrl.NotTab === 3 }">
+                        <a href="" data-toggle="tab" ng-click="backendCtrl.NotTab = 3">{{ 'back.past'|trans }}</a>
+                    </li>
+                </ul>
+                <div class="tab-content pad20">
+                    <div id="open" class="chart" ng-show="backendCtrl.NotTab === 1">
+                        {#<div class="row" style="margin-left: 0px; margin-right: 0px;">#}
+                        {% include '@App/Include/backendNotification.html.twig' %}
+                        {#</div>#}
+                    </div>
+                    <div id="upcoming" class="chart" ng-show="backendCtrl.NotTab === 2">
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset1">
+                                tab upcoming request
+                            </div>
+                        </div>
+                    </div>
+                    <div id="past" class="chart" ng-show="backendCtrl.NotTab === 3">
+                        past
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 list-table" ng-show="backendCtrl.mainMenuTab === 5">
+                <div class="box row">
+                    <div class="row box-header content-title">
+                        <h3 class="box-title fs-16">Messages</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Message</th>
+                                <th>Price</th>
+                                <th class="col-xs-1 text-center">State</th>
+                                <th class="col-xs-1 text-center">Eliminar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for entity in notifies %}
+                                <tr>
+                                    <td>
+                                        {% if entity.type == 2 %}
+                                            {{ 'back.notify2'|trans }} {{ entity.action.packetName }} {{ 'back.notify2.1'|trans }}
+                                        {% else %}
+                                            {{ 'back.notify1'|trans }} {{ entity.action.carryType }} {{ 'back.notify1.1'|trans }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ entity.action.price }}
+                                    </td>
+                                    <td>
+                                        {% if entity.state == 1 %}
+                                            <span class="badge center-block"
+                                                  style="padding-left: 2%; padding-right: 2%; background: green">New</span>
+                                        {% else %}
+                                            <span class="badge center-block"
+                                                  style="padding-left: 2%; padding-right: 2%; background: deepskyblue">Old</span>
+                                        {% endif %}
+                                    </td>
+                                    <td align="center"><a id="delete"
+                                                          href="{{ path('notify_delete', { 'id': entity.id }) }}"><i
+                                                    class="fa fa-times-circle"></i></a></td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <div class="col-sm-3 backend-side-menu">
+            <div class="row">
+                <div class="col-sm-12 border-radius-10 white-background">
+                    <div class="text-center padT10">
+                        <h3>{{ app.user.username }}</h3>
+                    </div>
+                    <div class="col-sm-6 text-center c-dbdbdb padT10">
+                        <div class="col-sm-3">
+                            <div class="genre-male"></div>
+                        </div>
+                        <span class="col-sm-9 genre-age">{{ app.user.birthDate|age }} years old</span>
+                    </div>
+                    <div class="col-sm-6 text-center c-dbdbdb padT10">
+                        <div class="col-sm-3">
+                            <div class="user-packets-image"></div>
+                        </div>
+                        <span class="col-sm-9 packet-count">{{ packets }} packets</span>
+                    </div>
+                    <div class="col-sm-12 text-center c-dbdbdb padT10">
+                        <span>Member from</span>
+                    </div>
+                    <div class="col-sm-12 text-center padB10">
+                        <span>December 2015</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 border-radius-10 white-background marT20">
+                    <ul id="ul_menu" class="padB10">
+                        <li ng-class="{ active:backendCtrl.mainMenuTab === 1 }">
+                            <a class="col-sm-12 main-menu-image" ng-click="backendCtrl.mainMenuTab = 1">
+                                <div class="col-sm-3"><div class="user-image"></div></div>
+                                <div class="col-sm-9">  My profile </div>
+                            </a>
+                        </li>
+                        <li ng-class="{ active:backendCtrl.mainMenuTab === 2 }">
+                            <a class="col-sm-12" ng-click="backendCtrl.my_items()">
+                                <div class="col-sm-3"><div class="user-image"></div></div>
+                                <div class="col-sm-9">  My items </div>
+                                </a>
+                        </li>
+                        <li ng-class="{ active:backendCtrl.mainMenuTab === 3 }">
+                            <a class="col-sm-12" ng-click="backendCtrl.my_trips()">
+                                <div class="col-sm-3"><div class="user-image"></div></div>
+                                <div class="col-sm-9">  My trips </div>
+                            </a>
+                        </li>
+                        <li ng-class="{ active:backendCtrl.mainMenuTab === 4 }">
+                            <a class="col-sm-12" ng-click="backendCtrl.my_notify()">
+                                <div class="col-sm-3"><div class="user-image"></div></div>
+                                <div class="col-sm-9">Notification</div>
+                            </a>
+                        </li>
+                        <li ng-class="{ active:backendCtrl.mainMenuTab === 5 }">
+                            <a class="col-sm-12" ng-click="backendCtrl.mainMenuTab = 5">
+                                <div class="col-sm-3"><div class="user-image"></div></div>
+                                <div class="col-sm-9">Messages</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('components/geocomplete/jquery.geocomplete.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/geocomplete/app.geocomplete.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/jasny/file-upload/bootstrap-fileupload.js') }}"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("#location").geocomplete({
+                details: ".geo-details",
+                detailsAttribute: "data-geo"
+            });
+
+        });
+
+        $('#btn-remove').click(
+                function () {
+           console.info('probando');
+            $('#dir_foto').attr("src",'{{ asset('uploads/images/user/default_avatar.png') }}');
+        });
+//        $('#btn-remove').onclick()
+        $('#setting_city').val('{{ entity.city }}');
+        $('#setting_country').val('{{ entity.country }}');
+        console.info('{{ entity.sex }}');
+        if('{{ entity.sex }}' == 1 )
+            $('#radio_male').attr('checked',true);
+        else
+            $('#radio_female').attr('checked',true);
+
+
+    </script>
+{% endblock %}

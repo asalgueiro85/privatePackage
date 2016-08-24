@@ -1,0 +1,23 @@
+hwi_oauth:
+    firewall_name: main
+    http_client:
+        timeout:  3600
+        verify_peer: false
+#    connect:
+#        account_connector: user_sm_provider
+    fosub:
+        username_iterations: 30
+        properties:
+            facebook: facebookID
+            google:   googleID
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           811687108916439
+            client_secret:       3f1e92d7d219847ac3980b23a432783f
+            scope:               "public_profile, email"
+        google:
+            type:                google
+            client_id:           877359959329-3ai9b2d39htrhbovcsq6g4a8baoc6c8d.apps.googleusercontent.com
+            client_secret:       r0iPb2PhsIiexpA3OQklvvD-
+            scope:               "email profile"

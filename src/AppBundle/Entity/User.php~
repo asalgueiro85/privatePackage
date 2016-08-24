@@ -1,0 +1,338 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Entity\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+
+/**
+ * User
+ *
+ * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\UserRepository")
+ */
+class User extends BaseUser
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     */
+    protected $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+     */
+    protected $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", nullable=true, unique=true)
+     */
+    protected $facebookID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google_id", type="string", nullable=true, unique=true)
+     */
+    protected $googleID;
+
+    /**
+     * @var date
+     *
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
+     */
+    protected $birthDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    protected $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    protected $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lng", type="string", length=255, nullable=true)
+     */
+    protected $lng;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sex", type="boolean", nullable=true)
+     */
+    protected $sex;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comments", type="text", nullable=true)
+     */
+    protected $comments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path_picture", type="string", length=255, nullable=true)
+     */
+    protected $pathPicture;
+
+    /**
+     * @Assert\Image(maxSize = "1000k")
+     */
+    protected $picture;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Action", mappedBy="user")
+     */
+    protected $actions;
+
+//    public function subirFoto()
+//    {
+//        if (null === $this->foto) {
+//            return;
+//        }
+//        $directorioDestino = __DIR__.'/../../../web/uploads/users/'.$this->usuario.'/';
+//        $nombreArchivoFoto = uniqid('foto-').'.jpg';
+//        $this->foto->move($directorioDestino, $nombreArchivoFoto);
+//        $this->setRutafoto($nombreArchivoFoto);
+//    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addRole('ROLE_USER');
+    }
+
+    public function addRole($role)
+    {
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set facebookID
+     *
+     * @param string $facebookID
+     *
+     * @return User
+     */
+    public function setFacebookID($facebookID)
+    {
+        $this->facebookID = $facebookID;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookID
+     *
+     * @return string
+     */
+    public function getFacebookID()
+    {
+        return $this->facebookID;
+    }
+
+    /**
+     * Set googleID
+     *
+     * @param string $googleID
+     *
+     * @return User
+     */
+    public function setGoogleID($googleID)
+    {
+        $this->googleID = $googleID;
+
+        return $this;
+    }
+
+    /**
+     * Get googleID
+     *
+     * @return string
+     */
+    public function getGoogleID()
+    {
+        return $this->googleID;
+    }
+
+    /**
+     * Set birthDate
+     *
+     * @param \DateTime $birthDate
+     *
+     * @return User
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthDate
+     *
+     * @return \DateTime
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * Set pathPicture
+     *
+     * @param string $pathPicture
+     *
+     * @return User
+     */
+    public function setPathPicture($pathPicture)
+    {
+        $this->pathPicture = $pathPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get pathPicture
+     *
+     * @return string
+     */
+    public function getPathPicture()
+    {
+        return $this->pathPicture;
+    }
+
+    /**
+     * @param UploadedFile $picture
+     */
+    public function setPicture(UploadedFile $picture = null)
+    {
+        $this->picture = $picture;
+    }
+
+
+    /**
+     * @return UploadedFile
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Add action
+     *
+     * @param \AppBundle\Entity\Action $action
+     *
+     * @return User
+     */
+    public function addAction(\AppBundle\Entity\Action $action)
+    {
+        $this->actions[] = $action;
+
+        return $this;
+    }
+
+    /**
+     * Remove action
+     *
+     * @param \AppBundle\Entity\Action $action
+     */
+    public function removeAction(\AppBundle\Entity\Action $action)
+    {
+        $this->actions->removeElement($action);
+    }
+
+    /**
+     * Get actions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActions()
+    {
+        return $this->actions;
+    }
+}

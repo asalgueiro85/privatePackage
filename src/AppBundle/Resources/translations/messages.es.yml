@@ -1,0 +1,9 @@
+title:             Bienvenido
+help:               AYUDA
+register:           REGISTRO
+login:              LOGIN
+
+menu:
+    day:               Oferta del dia
+    my:                Mis ofertas
+    recent:            Ofertas recientes

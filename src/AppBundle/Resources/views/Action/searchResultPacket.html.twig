@@ -1,0 +1,270 @@
+{% extends '@App/layoutBackend.html.twig' %}
+{% block body -%}
+    <div class="row border-blue-bootom">
+        <div class="col-sm-4 padT10 padB10">
+
+            <div class="col-sm-8 padL30">
+                <div class="col-sm-4 padLR0">
+                    <div class="div-img-carry"></div>
+                </div>
+
+                <div class="col-sm-8 text-left pad0">
+                    {#<div class="padT10"><img class="img-result-trip" src="{{ asset('img/back/truck_blue.png') }} ">#}
+                    <div class="padT10">
+                        <img class="img-result-trip" src="{{ asset('img/back/'~ typeCar ~'_blue.png') }} ">
+                    </div>
+
+                    <span class="color-128">{{ weight }} xsmall</span>
+                    <span class="upcoming-color">{{ price }} eur</span>
+                </div>
+            </div>
+            <div class="col-sm-4 padR0 text-center">
+                <div class="row span-nav-black marT10 padR10 padB5">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    <span class="">Edit</span>
+                </div>
+                <div class="row span-nav">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    <span class="">Reset</span>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-sm-4 border-div padT10 padB10">
+            <div class="col-sm-4 text-right padr0  marT20">
+                <img src="{{ asset('img/back/pin_to_blue.png') }}" class="div-img-pin-to-nav">
+            </div>
+            <div class="col-sm-1 padr0 padl0 marT5">
+                <img src="{{ asset('img/back/pin_from_blue.png') }}" class="div-img-pin-from-nav">
+            </div>
+            <div class="col-sm-7 padl0">
+                <span class="color-128 font11 v-align-b">From/To</span><br>
+                <span><strong>{{ from }},</strong> </span><span class="upcoming-color"><strong>{{ countryFrom }}</strong></span><br>
+                <span><strong>{{ to }},</strong></span><span
+                        class="color-2e819d"><strong>{{ countryTo }}</strong></span><br>
+            </div>
+        </div>
+        <div class="col-sm-4 padT10 padB10">
+            <div class="col-sm-3 text-center padr0 padl0 marT5 padT10">
+                <img src="{{ asset('img/back/packet/calendar.png') }}" class="">
+            </div>
+            <div class="col-sm-9 padl0">
+                <span class="color-128 font11 v-align-b">When</span><br>
+                <span class="upcoming-color">{{ dateFromM }}</span>,<span><strong> {{ dateFromY }}</strong></span><span
+                        class="color-128 font11 v-align-b"> {{ dateFromH }}</span><br>
+                <span class="color-2e819d">{{ dateToM }}</span>,<span><strong> {{ dateToY }}</strong></span><span
+                        class="color-128 font11 v-align-b"> {{ dateToH }}</span><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="row col-sm-12">
+        <div class="col-sm-2 col-sm-offset-5 text-center padl0 padR0 marT10 marB10">
+
+            <a href="#"
+               class="btn btn-block btn-success btn-register bc-33b5e6">
+                <img class="img-reset" src="{{ asset('img/back/packet/reset_pkt.png') }}">
+                {{ 'back.reset'|trans }}
+            </a>
+        </div>
+    </div>
+
+    <div class="row pad50 color-back-f3f3f3">
+        <div class="row col-sm-12 white-back-div ">
+            <div class="row col-sm-12 text-right">
+                <a href="{{ path('app_backend') }}">
+                <i class="fa fa-fw fa-times" title="Back to home"></i>
+                </a>
+            </div>
+            <div class="row col-sm-12 marB10 padl0">
+                <div class="col-sm-8 padl0">
+                    <div class="col-sm-1">
+                        <img src="{{ asset('img/back/packet/senders.png') }} ">
+                    </div>
+                    <div class="col-sm-11 padT10">
+                        <span class="font24"><strong>{{ entities|length }} </strong></span> <span
+                                class="font24 color-128"> Senders matched</span>
+                    </div>
+
+                </div>
+                <div class="col-sm-4 padT20 padR0">
+                    <div class="col-sm-4">
+                        <img class="padR10" src="{{ asset('img/back/packet/row_3.png') }} ">
+                        <img src="{{ asset('img/back/packet/row.png') }} ">
+                    </div>
+                    <div class="col-sm-8 form-group padR0">
+                        <label class="col-sm-4 text-right padR0 color-128 font12">Short by</label>
+
+                        <div class="col-sm-8 padR0 marT-5">
+                            <select data-placeholder="Choose..." class="form-control font12" tabindex="2">
+                                <option value=""></option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+<div ng-controller="SearchController as actionCtrl" class="row col-sm-12 padR0 padl0">
+          {% for entity in entities %}
+              <div class="col-sm-4 padl0 padR0 marT10">
+            <div class="div-result row">
+                <div class="row col-sm-12 padR0 border-bottom marL0 padB10">
+                    <div class="col-sm-2 padl0 padR0">
+
+                        {% if entity.user.pathPicture %}
+                            <img class="img-result" src="{{ asset('uploads/images/user/') }}{{ entity.user.username }}/{{ entity.user.pathPicture }}"
+                                 alt="User Image"/>
+                        {% else %}
+                            <img class="img-result" src="{{ asset('img/back/packet/travelers_default.png') }}">
+                        {% endif %}
+
+
+                    </div>
+                    <div class="col-sm-10 padl0 padR0">
+                        <div class="col-sm-12 marB5 marT20">
+
+                            <div class="col-sm-2">
+                                <img src="{{ asset('img/back/packet/senders_copia.png') }} ">
+                            </div>
+                            <div class="col-sm-10 padl0">
+                                <span class=""><strong>{{ entity.user.firstName }} {{ entity.user.lastName }}</strong></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 padR0">
+                            <div class="col-sm-12 padR0">
+                                <div class="col-sm-6 padl0 padR0">
+                                    <div class="col-sm-12 padR0 padl0">
+                                        <div class="col-sm-3 padR0 padl0">
+                                            <img class="img-result-object" src="{{ asset('img/back/male.png') }} ">
+                                        </div>
+                                        <div class="col-sm-9 padl0 padR0">
+                                            <div class="">
+                                                <span class="font11 color-128">
+{{ entity.user.birthDate|age }} years
+                                                </span><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 padl0 padR0 border-left border-right">
+                                    <div class="col-sm-12 padR0 padl0 text-center">
+                                        <div class="col-sm-4 padR0 padl0">
+                                            <img class="img-result-object"
+                                                 src="{{ asset('img/back/packet/certification.png') }} ">
+                                        </div>
+                                        <div class="col-sm-8 padl0 padR0">
+                                            <div class="">
+                                                <span class="font11 color-128">100%</span><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {#<div class="col-sm-3 padl0 padR0">#}
+                            {#<span class="">4.3</span>#}
+                            {#<span class="">45</span>#}
+                            {#</div>#}
+                        </div>
+                        <div class="col-sm-5 padR0 padl0 marT-5">
+                            <div class="col-sm-12 padR0 padl0">
+                                <div class="col-sm-5 padl0 padR0 text-center">
+                                    <img class="" src="{{ asset('img/back/packet/paketes.png') }} ">
+                                </div>
+                                <div class="col-sm-7 padl0 padR0">
+
+                                    <div class="">
+                                        <span class=""><strong>28</strong></span>
+                                        <span class="color-128">Send</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {#<div class="col-sm-3 padl0 padR0">#}
+                            {#<span class="">4.3</span>#}
+                            {#<span class="">45</span>#}
+                            {#</div>#}
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row col-sm-12 padR0 marL0 padl0">
+
+                    <div class="col-sm-3 padR0 div-result-packet">
+                        <img class="img-result-packet" src="{{ asset('img/img3.jpg') }} ">
+                    </div>
+                    <div class="col-sm-9 padR0 ">
+                        <div class="row col-sm-12 padR0 padT10 marL0">
+                            <div class="col-sm-5 padR0 padL35">
+                                <div class="">
+                                    <span class=""><strong>{{ entity.packetName }}</strong></span>
+                                </div>
+                                <div class="">
+                                    <span class="color-128 font10 v-align-b">From</span>
+                                </div>
+                                <div class="marT-5"><span class="">{{ entity.direction.cityFrom }}</span></div>
+                                <div class="marT-5"><span class="color-128 font12">{{ entity.direction.countryFrom }}</span></div>
+
+
+                            </div>
+
+                            <div class="col-sm-7 padR0">
+
+                                <div class="col-sm-12 padR0 padl0">
+                                    <div class="col-sm-3 padR0 padl0 marL-10">
+                                        <img class="" src="{{ asset('img/back/packet/award.png') }} ">
+                                    </div>
+                                    <div class="col-sm-9 padl0 padR0">
+                                        <div class="">
+                                            <span class=""><strong>${{ entity.price }}</strong></span>
+                                            <span class="color-33b5e6 font12 v-align-b">{{ entity.weight }}kg</span>
+                                            <span class="color-128 font12 v-align-b">/small</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="">
+                                    <span class="color-128 font10 v-align-b">To</span>
+                                </div>
+                                <div class="marT-5">
+                                    <span class=""><strong>{{ entity.direction.cityTo }}</strong></span>
+                                </div>
+                                <div class="marT-5">
+                                    <span class="color-128 font12">{{ entity.direction.countryTo }},</span>
+                                    <span class="color-2e819d font12">Sun,18</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="row col-sm-12 div-description">
+                            <p class="text-justify font10 color-128">Aqui va la descripcion de cada una de los productos
+                                y demas informacion.</p>
+                        </div>
+                        <div class="col-sm-5 col-sm-offset-4 text-center padl0 padR0 marT10 marB10">
+                            <button ng-click="actionCtrl.packet_notify('{{ id }}','{{ entity.id }}','{{ type }}')" onClick="this.disabled=true"
+                               class="btn btn-block btn-success btn-register bc-33b5e6">{{ 'back.notify'|trans }}</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+              </div>
+            {% endfor %}
+</div>
+            {#elementos de la tabla#}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

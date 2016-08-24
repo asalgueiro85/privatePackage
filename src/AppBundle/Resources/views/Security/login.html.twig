@@ -1,0 +1,170 @@
+{% extends 'AppBundle::layoutFrontend.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block custom_javascripts %}
+{% endblock custom_javascripts %}
+
+{% block header_content %}
+    {#app-nav header#}
+    <header class="main-header login-header">
+        {#<header class="navbar-fixed-top main-header">#}
+        <div class="row from-nav header-login">
+            <div class=" row col-sm-3 marL-20 marB30">
+
+                <img src="{{ asset('img/logo_app.png') }}" alt="System Logo"/>
+
+                <label class="marT5 foot-text-color">Paketprivat</label>
+            </div>
+
+            <div class="col-sm-9 foot-text-color">
+                <ul class="nav navbar-nav navbar-right marR-20">
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'About'|trans }}</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'howwork'|trans }}</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'Safety'|trans }}</a>
+                    </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li>
+                            <a class="btn btn-link marT5 marB5"
+                               href="{{ path('fos_user_security_logout') }}">{{ 'logout'|trans }}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a  href="{{ path('app_register') }}" class="btn btn-link marT5 marB5">{{ 'sing'|trans|capitalize }}</a>
+                            <p class=""></p>
+                        </li>
+                        <li>
+                            <a class="btn btn-link marT5 marB5"
+                               href="{{ path ('app_login') }}">{{ 'login'|trans|capitalize }}</a>
+                            <p class="currentNavActive"></p>
+                            {#<a class="btn btn-link marT5 marB5" href="{{ path('fos_user_security_login') }}">{{ 'login'|trans|capitalize }}</a>#}
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </header>
+    {#end app-nav header#}
+{% endblock %}
+
+{% block body %}
+    <section class="row" ng-controller="LoginController as loginCtrl">
+        <div class="col-sm-6 col-sm-offset-3" ng-hide="formLogin">
+            <form class="form-login" method="post" action="{{ path('fos_user_security_check') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+                <div class="row">
+                    <p class="text-center  fs-16 c-235B9E marB25">{{ 'login'|trans }}</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <a href="{{ hwi_oauth_login_url('facebook') }}" class="btn btn-facebook fs-15">
+                            {{ 'FACEBOOK'|trans({},'frontend') }}
+                        </a>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <a href="{{ hwi_oauth_login_url('google') }}" class="btn btn-google fs-15">
+                            {{ 'GOOGLE'|trans({},'frontend') }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row">
+                        {% if error is defined and error is not empty %}
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                                {% from ':macros:flash.html.twig' import flash %}
+                                {{ flash('danger',error|trans({},'FOSUserBundle'),'times', 0) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <div class="form-group">
+                                <input type="text"
+                                       class="register-placeholder form-control {% if error is defined and error is not empty %}error-gradient{% endif %}"
+                                       name="_username"
+                                       placeholder="{{ 'security.login.username'|trans({},'FOSUserBundle') }}"
+                                       value="{{ last_username }}" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <div class="form-group marB10">
+                                <input type="password"
+                                       class="register-placeholder form-control {% if error is defined and error is not empty %}error-gradient{% endif %}"
+                                       name="_password" required="required"
+                                       placeholder="{{ 'security.login.password'|trans({},'FOSUserBundle') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <div class="checkbox important-left">
+                                <label class="tc-808080 fs-12">
+                                    <input type="checkbox" name="_remember_me" value="on"
+                                           class="ios-switch-old"> {{ 'security.login.remember_me'|trans({},'FOSUserBundle') }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 marTM10 a-effect">
+                            <a class="c-9ad7f3 forget-pass-hover fs-12"
+                               {#onclick="javascript:forgetPassModal()"#}
+                                  ng-click="loginCtrl.forgetPass()"
+                                    >{{ 'FORGET_PASSWORD'|trans({},'frontend') }}</a>
+                        </div>
+                    </div>
+                    <div class="row marTB50">
+                        <div class="row marTB10">
+                            <div class="col-sm-8 col-sm-offset-2 text-center">
+                                <a href="#" class="c-235B9E fs-16">Don't have account?</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-4 text-center">
+                                <button type="submit"
+                                        class="btn btn-block btn-success btn-register fs-12 bc-33b5e6">
+                                    {{ 'security.login.submit'|trans({},'FOSUserBundle')|capitalize }}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row marTB10">
+                            <div class="col-sm-6 col-sm-offset-3 text-center">
+                                <p class="fs-12">Creating a account, you must accept our </br>
+                                    <span class="c-235B9E">Terms and Conditions</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form class="col-sm-4 col-sm-offset-4 forgotForm" ng-show="formLogin" method="post" action="{{ path('app_restore_password') }}">
+            <div class="row">
+                <p class="marL15"><strong class="c-235B9E">Don't worry</strong> </br> we are help you right now</p>
+            </div>
+            <div class="row marTB20">
+                <input type="text"
+                       class="register-placeholder form-control"
+                       name="_email"
+                       placeholder="{{ 'profile.show.email'|trans({},'FOSUserBundle') }}"
+                       required="required">
+            </div>
+            <div class="row marTB10">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <button type="submit"
+                            class="btn btn-block btn-success btn-restore-password fs-12 bc-33b5e6">
+                        {{ 'send_instruccions'|trans }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock body %}

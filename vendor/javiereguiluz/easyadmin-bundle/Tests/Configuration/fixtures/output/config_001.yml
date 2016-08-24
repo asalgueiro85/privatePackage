@@ -1,0 +1,18 @@
+class: AppBundle\Entity\TestEntity
+label: TestEntity
+name: TestEntity
+edit:
+    fields: []
+    form_options: []
+list:
+    fields: []
+new:
+    fields: []
+    form_options: []
+search:
+    fields: []
+show:
+    fields: []
+primary_key_field_name:
+    - id
+properties: []

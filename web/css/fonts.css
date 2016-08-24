@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'ClearSans-Bold';
+  src: url('../fonts/ClearSans-Bold.eot');
+  src: url('../fonts/ClearSans-Bold.eot') format('embedded-opentype'), url('../fonts/ClearSans-Bold.woff') format('woff'), url('../fonts/ClearSans-Bold.ttf') format('truetype'), url('../fonts/ClearSans-Bold.svg') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+.clearsans-bold {
+  font-family: ClearSans-Bold;
+}
+
+@font-face {
+  font-family: 'ClearSans-BoldItalic';
+  src: url('../fonts/ClearSans-BoldItalic.eot');
+  src: url('../fonts/ClearSans-BoldItalic.eot') format('embedded-opentype'), url('../fonts/ClearSans-BoldItalic.woff') format('woff'), url('../fonts/ClearSans-BoldItalic.ttf') format('truetype'), url('../fonts/ClearSans-BoldItalic.svg') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+.clearsans-bold-italic {
+  font-family: ClearSans-BoldItalic;
+}
+
+@font-face {
+  font-family: 'ClearSans-Italic';
+  src: url('../fonts/ClearSans-Italic.eot');
+  src: url('../fonts/ClearSans-Italic.eot') format('embedded-opentype'), url('../fonts/ClearSans-Italic.woff') format('woff'), url('../fonts/ClearSans-Italic.ttf') format('truetype'), url('../fonts/ClearSans-Italic.svg') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+.clearsans-italic {
+  font-family: ClearSans-Italic;
+}
+
+@font-face {
+  font-family: 'ClearSans-Light';
+  src: url('../fonts/ClearSans-Light.eot');
+  src: url('../fonts/ClearSans-Light.eot') format('embedded-opentype'), url('../fonts/ClearSans-Light.woff') format('woff'), url('../fonts/ClearSans-Light.ttf') format('truetype'), url('../fonts/ClearSans-Light.svg') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+.clearsans-light {
+  font-family: ClearSans-Light;
+}
+
+@font-face {
+  font-family: 'ClearSans-Medium';
+  src: url('../fonts/ClearSans-Medium.eot');
+  src: url('../fonts/ClearSans-Medium.eot') format('embedded-opentype'), url('../fonts/ClearSans-Medium.woff') format('woff'), url('../fonts/ClearSans-Medium.ttf') format('truetype'), url('../fonts/ClearSans-Medium.svg') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+.clearsans-medium {
+  font-family: ClearSans-Medium;
+}
+
+@font-face {
+  font-family: 'ClearSans-MediumItalic';
+  src: url('../fonts/ClearSans-MediumItalic.eot');
+  src: url('../fonts/ClearSans-MediumItalic.eot') format('embedded-opentype'), url('../fonts/ClearSans-MediumItalic.woff') format('woff'), url('../fonts/ClearSans-MediumItalic.ttf') format('truetype'), url('../fonts/ClearSans-MediumItalic.svg') format('svg');
+  font-weight: 500;
+  font-style: italic;
+}
+.clearsans-medium-italic {
+  font-family: ClearSans-MediumItalic;
+}
+
+@font-face {
+  font-family: 'ClearSans-Regular';
+  src: url('../fonts/ClearSans-Regular.eot');
+  src: url('../fonts/ClearSans-Regular.eot') format('embedded-opentype'), url('../fonts/ClearSans-Regular.woff') format('woff'), url('../fonts/ClearSans-Regular.ttf') format('truetype'), url('../fonts/ClearSans-Regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.clearsans-regular {
+  font-family: ClearSans-Regular;
+}
+
+@font-face {
+  font-family: 'ClearSans-Thin';
+  src: url('../fonts/ClearSans-Thin.eot');
+  src: url('../fonts/ClearSans-Thin.eot') format('embedded-opentype'), url('../fonts/ClearSans-Thin.woff') format('woff'), url('../fonts/ClearSans-Thin.ttf') format('truetype'), url('../fonts/ClearSans-Thin.svg') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+.clearsans-thin {
+  font-family: ClearSans-Thin;
+}
+
+/* Material Fonts */
+.material-icons {
+  font-family: 'Material-Design-Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

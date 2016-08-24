@@ -1,0 +1,123 @@
+/* Getting the new tags to behave */
+/*article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {*/
+    /*display: block*/
+/*}*/
+
+mark, rp, rt, ruby, summary, time {
+    display: inline
+}
+
+/* Global properties */
+/*body {*/
+    /*background: url(../images/bg_bot.jpg) center 0 repeat #faf3ed;*/
+    /*border: 0;*/
+    /*font: 14px Georgia, "Times New Roman", Times, serif;*/
+    /*color: #200;*/
+    /*line-height: 24px*/
+/*}*/
+
+.slider_bg {
+    width: 100%;
+    height: 404px;
+    background: url(../images/bg_slider.jpg) 0 0 no-repeat;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+    margin-bottom: 35px
+}
+
+.slider1 {
+    /*top: 10px;*/
+    /*right: 10px;*/
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 0px;
+    /*width: 920px*/
+}
+
+.slider1 .items {
+    display: none
+}
+
+.slider1 .pic {
+    float: left;
+    position: relative
+}
+
+.banner {
+    right: 0px;
+    top: 0;
+    position: absolute;
+    width: 271px;
+    z-index: 2;
+    text-align: center;
+    margin-left: 60%;
+}
+
+.banner strong {
+    font-size: 52px;
+    color: #bf0f0a;
+    display: block;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    padding: 55px 0 0 0;
+    letter-spacing: -2px
+}
+
+.banner strong span {
+    display: block;
+    margin-top: -16px
+}
+
+.banner b {
+    display: block;
+    font-size: 27px;
+    color: #312826;
+    text-transform: uppercase;
+    padding: 0 0 23px 0;
+    line-height: 1.2em;
+    letter-spacing: -1px
+}
+
+/*.banner p {*/
+    /*background: url(../images/quot1.png) 0 0 no-repeat*/
+/*}*/
+
+/*.banner p span {*/
+    /*display: block;*/
+    /*background: url(../images/quot2.png) right bottom no-repeat;*/
+    /*padding: 0 0 0 0;*/
+    /*color: #6c5f5b;*/
+    /*padding-bottom: 2px*/
+/*}*/
+
+.slider1 .paginationSlider1 {
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 60%;
+}
+
+.slider1 .paginationSlider1 li {
+    float: left;
+    padding-right: 3px
+}
+.slider1 .paginationSlider1 a {
+    display: block;
+    width: 17px;
+    height: 150px;
+    text-indent: -9999px;
+    background: url(../../../img/ElipseBlue.png) right 0 no-repeat;
+}
+
+.slider1 .paginationSlider1 a:hover, .slider1 .paginationSlider1 .current a {
+    /*background-position: top;*/
+    background: url(../../../img/objectBlue.png) right 0 no-repeat;
+    margin-bottom: 50px;!important;
+    transform: translateY(-12px);
+    /*background-position: top;*/
+}

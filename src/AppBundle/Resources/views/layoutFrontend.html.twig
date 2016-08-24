@@ -1,0 +1,179 @@
+{% extends '::baseFrontend.html.twig' %}
+
+{% block head_style %}
+    <link type="text/css" href="{{ asset('css/frontend_style.css') }}" rel="stylesheet">
+    {#<link type="text/css" href="{{ asset('css/speed-use.css') }}" rel="stylesheet">#}
+    <link type="text/css" href="{{ asset('css/fonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.scrollbar.css') }}" type="text/css" rel="stylesheet">
+    {#{{ select.css() }}#}
+    {#{{ datetime.css() }}#}
+    <link href="{{ asset('css/material-icons.css') }}" type="text/css" rel="stylesheet">
+
+    {#mis estilos#}
+    <link rel="stylesheet" href="{{ asset('components/slide/css/reset.css') }}" type="text/css" media="all">
+    {#<link rel="stylesheet" href="{{ asset('components/slide/css/layout.css') }}" type="text/css" media="all">#}
+    <link rel="stylesheet" href="{{ asset('components/slide/css/style.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('components/slide/css/style1.css') }}" type="text/css" media="all">
+{% endblock head_style %}
+    {% block custom_javascripts %}
+        {#<script type="text/javascript" src="{{ asset('components/slide/js/jquery-1.6.js') }}" ></script>#}
+        {#<script type="text/javascript" src="{{ asset('components/slide/js/cufon-yui.js') }}" ></script>#}
+        {#<script type="text/javascript" src="{{ asset('components/slide/js/cufon-replace.js') }}" ></script>#}
+        {#<script type="text/javascript" src="{{ asset('components/slide/js/Forum_400.font.js') }}" ></script>#}
+        {#<script type="text/javascript" src="{{ asset('components/slide/js/jquery.easing.1.3.js') }}" ></script>#}
+        <script type="text/javascript" src="{{ asset('components/slide/js/tms-0.3.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('components/slide/js/tms-0.31.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('components/slide/js/tms_presets.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('components/slide/js/tms_presets1.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('components/slide/js/script.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('components/slide/js/script1.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('components/slide/js/atooltip.jquery.js') }}" ></script>
+    {% endblock custom_javascripts %}
+{% block footer_content %}
+    <div class="row marLR0 marB40">
+        <div class="footer-app col-sm-3">
+            <img src="{{ asset('img/logo_footer.png') }}" class="img-responsive img-center">
+        </div>
+        <div class="footer-app2 col-sm-9">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="footer-content col-sm-3">
+                    <ul>
+                        <li>
+                            <a class="btn btn-link">About</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-link">How its work</a>
+
+                        </li>
+                        <li>
+                            <a class="btn btn-link">Safely</a>
+
+                        </li>
+                        <li>
+                            <a class="btn btn-link">Press</a>
+
+                        </li>
+                        <li>
+                            <a class="btn btn-link">Job</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-content col-sm-2">
+                    <ul>
+                        <li>
+
+                            <a class="btn btn-link">Faqs</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-link">Privacy</a>
+
+                        </li>
+                        <li>
+                            <a class="btn btn-link">Terms</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-content col-sm-5">
+                    <div class="col-sm-12">
+                        <ul>
+                            <li>
+                                <a class="btn btn-link">Contact</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12">
+                        <a href="#"><img src="{{ asset('img/facebook.png') }}" class="img-social-net-first"></a>
+                        <a href="#"><img src="{{ asset('img/twitter.png') }}" class="img-social-net"></a>
+                        <a href="#"><img src="{{ asset('img/googleplus.png') }}" class="img-social-net"></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 foot-last">
+                Copyright,2015. Terms of use. Privacy policy
+            </div>
+        </div>
+    </div>
+
+
+        {#<div class="pull-right hidden-xs">#}
+            {#<b>Version</b> 2.0#}
+        {#</div>#}
+        {#<strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.#}
+{% endblock footer_content %}
+
+
+{#{% block body_end_before_js %}#}
+    {#{% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}#}
+        {#<div class="modal fade" id="modal-login">#}
+            {#<div class="modal-dialog modal-dialog-dimensions">#}
+                {#<div class="modal-content">#}
+                    {#<div class="modal-header text-center">#}
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        {#<img src="{{ asset('img/logo_couch-03.png') }}" alt="Logo System" class="img-responsive center-position">#}
+                    {#</div>#}
+                    {#<div class="modal-body marT30">#}
+                        {#{{ render(controller('AppBundle:Security:login')) }}#}
+                    {#</div>#}
+                {#</div><!-- /.modal-content -->#}
+                {#<div class="modal-footer">#}
+                    {#<div class="col-sm-12 text-center">#}
+                        {#<button class="btn btn-link tc-fec107 fs-16 clearsans-medium" onclick="javascript:signUpModal()">{{ 'CREATE_AN_ACCOUNT'|trans({},'frontend') }}</button>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div><!-- /.modal-dialog -->#}
+        {#</div><!-- /.modal -->#}
+
+        {#<div class="modal fade" id="modal-sign-up">#}
+            {#<div class="modal-dialog modal-dialog-dimensions">#}
+                {#<div class="modal-content">#}
+                    {#<div class="modal-header text-center">#}
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        {#<img src="{{ asset('img/logo_couch-03.png') }}" alt="Logo System" class="img-responsive center-position">#}
+                    {#</div>#}
+                    {#<div class="modal-body marT30">#}
+                        {#{{ render(controller('AppBundle:Security:register')) }}#}
+                    {#</div>#}
+                {#</div><!-- /.modal-content -->#}
+                {#<div class="modal-footer">#}
+                    {#<div class="col-sm-12 text-center">#}
+                        {#<button class="btn btn-link tc-fec107 fs-16 clearsans-medium" onclick="javascript:loginModal()">{{ 'HAVE_AN_ACCOUNT_LOGIN'|trans({},'frontend') }}</button>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div><!-- /.modal-dialog -->#}
+        {#</div><!-- /.modal -->#}
+
+        {#<div class="modal fade" id="modal-forget-pass">#}
+            {#<div class="modal-dialog modal-dialog-dimensions">#}
+                {#<div class="modal-content">#}
+                    {#<div class="modal-header text-center">#}
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+                        {#<img src="{{ asset('img/logo_couch-03.png') }}" alt="Logo System" class="img-responsive center-position">#}
+                    {#</div>#}
+                    {#<div class="modal-body marT30">#}
+                        {#{{ include('FOSUserBundle:Resetting:request.html.twig') }}#}
+                    {#</div>#}
+                {#</div><!-- /.modal-content -->#}
+            {#</div><!-- /.modal-dialog -->#}
+        {#</div><!-- /.modal -->#}
+
+        {#&#123;&#35;{% block body_section_login %}{% endblock %}&#35;&#125;#}
+        {#&#123;&#35;{% block body_section_register %}{% endblock %}&#35;&#125;#}
+        {#&#123;&#35;{% block body_section_reset_confirm %}{% endblock %}&#35;&#125;#}
+
+    {#{% endif %}#}
+
+    {#<div class="modal-background"></div>#}
+
+    {#&#123;&#35;{{ travel.html() }}&#35;&#125;#}
+    {#&#123;&#35;{% if searchData is defined and searchData is not empty %}&#35;&#125;#}
+    {#&#123;&#35;{{ location.html(searchData) }}&#35;&#125;#}
+    {#&#123;&#35;{% else %}&#35;&#125;#}
+    {#&#123;&#35;{{ location.html() }}&#35;&#125;#}
+    {#&#123;&#35;{% endif %}&#35;&#125;#}
+{#{% endblock body_end_before_js %}#}
+

@@ -1,0 +1,10 @@
+fos_oauth_server:
+    db_driver: orm
+    client_class:        UCME\CouchBookerBundle\Entity\OAuthClient
+    access_token_class:  UCME\CouchBookerBundle\Entity\OAuthAccessToken
+    refresh_token_class: UCME\CouchBookerBundle\Entity\OAuthRefreshToken
+    auth_code_class:     UCME\CouchBookerBundle\Entity\OAuthAuthCode
+    service:
+        user_provider: platform.user.provider
+        options:
+            supported_scopes: user

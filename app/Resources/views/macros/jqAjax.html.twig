@@ -1,0 +1,44 @@
+{% macro complete() %}
+var ajaxComplete = function(jqXHR, status){
+  {% if (app.environment == "dev" ) %}
+  console.debug(jqXHR);
+  {% endif %}
+  switch (status){
+    case "error":
+      displaySpinner(false);
+      {% if (app.environment == "dev" ) %}
+      console.log('Error');
+      {% endif %}
+      break;
+    case "notmodified":
+      displaySpinner(false);
+      {% if (app.environment == "dev" ) %}
+      console.log('Not Modified');
+      {% endif %}
+      break;
+    case "timeout":
+      displaySpinner(false);
+      {% if (app.environment == "dev" ) %}
+      console.log('Timeout');
+      {% endif %}
+      break;
+    case "abort":
+      displaySpinner(false);
+      {% if (app.environment == "dev" ) %}
+      console.log('Abort');
+      {% endif %}
+      break;
+    case "parsererror":
+      displaySpinner(false);
+      {% if (app.environment == "dev" ) %}
+      console.log('Parse error');
+      {% endif %}
+      break;
+    default: // success
+      {% if (app.environment == "dev" ) %}
+      console.log('Success');
+      {% endif %}
+      break;
+  }
+};
+{% endmacro %}

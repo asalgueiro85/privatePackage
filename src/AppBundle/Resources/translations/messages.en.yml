@@ -1,0 +1,66 @@
+title:                   Welcome
+help:                    Help
+register:                Register
+login:                   Login
+logout:                  Logout
+howwork:                 How its work
+sing:                    Sing up
+registration.submit:     Sing up
+Section:                 Section
+Safety:                  Safety
+verified_credentials:    Verified credentials
+internal_comunication:   Internal comunication
+insurance_coverage:      Insurance coverage
+rating_system:           Rating system
+secure_payments:         Secure payments
+authentic_and_choice:    Authentic and choice
+verified_credentials:    Verified credentials
+internal_comunication:   Internal comunication
+insurance_coverage:      Insurance coverage
+rating_system:           Rating system
+secure_payments:         Secure payments
+authentic_and_choice:    Authentic and choice
+send_instruccions:       Send instruccion
+I_AGREE_WITH_:           I Agree with
+TERMS_AND_CONDITIONS:    Terms and Conditions
+form.register:           Register
+form.register.facebook:  Using Facebook
+form.register.google:    Using Google
+email:                   Email
+password:                Password
+username:                Username
+confirm_password:         Confirm Password
+first_name:              First Name
+last_name:               Last Name
+form.register.country:   Country
+form.register.city:      City
+form.register.birthday:  Birthday
+
+back:
+    sendItem:            Send Item
+    sendPakect:          Send packet
+    carryPakect:         Carry packet
+    Search:              Search
+    save:                Save
+    postTrip:            Post a trip
+    notify:             Notify
+    notify1:             El transporte
+    notify1.1:           desea llevar su paquete.
+    notify2:             El paquete
+    notify2.1:           desea formar parte de su viaje.
+    next:                Next
+    edit:                Edit
+    cancel:              Cancel
+    reset:               Reset packet
+    trip:                On a trip
+    available:           Availables
+    backend:             Backend
+    upcoming:            Upcoming
+    past:                Past
+    openRequest:         Open Request
+
+menu:
+    day:                   Daily deal
+    my:                    My offers
+    recent:                Recent offers
+

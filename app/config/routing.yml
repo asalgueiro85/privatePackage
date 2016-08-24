@@ -1,0 +1,21 @@
+fos_routing:
+    resource: fos/routing.yml
+    prefix:   /{_locale}
+    requirements:
+        _locale: "en|es"
+hwi_routing:
+    resource: hwi/routing.yml
+    prefix:   /
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix: /{_locale}
+    requirements:
+        _locale: en|es
+_site_homepage:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /%locale%
+        permanent: true
+

@@ -1,0 +1,20 @@
+# FOSUser bundle confguration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+        address:        asalgueiro85@gmail.com
+        sender_name:    Admin
+    registration:
+        confirmation:
+            enabled: true
+            template: AppBundle:Registration:email.html.twig
+        form:
+            type: app_form_registration
+    profile:
+        form:
+            type: app_form_user_profile
+#            validation_groups:  [CBookRegistration]
+    service:
+        mailer: fos_user.mailer.twig_swift

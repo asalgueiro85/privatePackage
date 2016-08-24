@@ -1,0 +1,294 @@
+{% extends 'AppBundle::layoutFrontend.html.twig' %}
+
+{% block title %}WELCOME{% endblock %}
+
+{% block header_content %}
+    {#app-nav header#}
+<header class="navbar-absolute-top main-header">
+    {#<header class="navbar-fixed-top main-header">#}
+    <div class="row from-nav" xmlns="http://www.w3.org/1999/html">
+        <div class=" row col-sm-3 marL-20 marB30">
+
+            <img src="{{ asset('img/logo_app.png') }}" alt="System Logo"/>
+
+            <label class="marT5 foot-text-color">Paketprivat</label>
+        </div>
+
+        <div class="col-sm-9 foot-text-color">
+            <ul class="nav navbar-nav navbar-right clearsans-regular marR-20">
+                <li>
+                    <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'About'|trans }}</a>
+                </li>
+                <li>
+                    <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'howwork'|trans }}</a>
+                </li>
+                <li>
+                    <a class="btn btn-link marT5 marB5" href="{{ path('action_new') }}">{{ 'Safety'|trans }}</a>
+                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li>
+                        <a class="btn btn-link marT5 marB5"
+                           href="{{ path('fos_user_security_logout') }}">{{ 'logout'|trans }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('app_register') }}">{{ 'sing'|trans|capitalize }}</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-link marT5 marB5" href="{{ path('app_login') }}">{{ 'login'|trans|capitalize }}</a>
+                    </li>
+                {% endif %}
+
+                <li>
+                    <a href="#" class="dropdown-toggle marT5 marB5 btn-link" data-toggle="dropdown">
+                        {#{{ locales[app.request.locale] }}#}
+                        LANG
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-xs dropdown-menu-language padT0 ul-dropdown">
+
+                        {% set uri = app.request.pathInfo %}
+                        {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
+                        {#{% for key, locale in locales %}#}
+                        {#{% if key != app.request.locale %}#}
+                        <li class="">
+                            <a href="{{ path('app_front_switch_language',{'uri':app.request.pathInfo,'lng':'en','params':params}) }}">
+                                EN
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('app_front_switch_language',{'uri':app.request.pathInfo,'lng':'es','params':params}) }}">
+                                ES
+                            </a>
+                        </li>
+                        {#{% endif %}#}
+                        {#{% endfor %}#}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+    {#end app-nav header#}
+{% endblock %}
+
+{% block body %}
+
+    {#slider principal#}
+    <div class="slider">
+        <ul class="items">
+            <li>
+                <img src="{{ asset('img/slide_0_copia.jpg') }}" alt="" class="img-responsive">
+            </li>
+            <li>
+                <img src="{{ asset('img/slide_3_copia.jpg') }}" alt="" class="img-responsive">
+            </li>
+            <li>
+                <img src="{{ asset('img/slide_2_copia.jpg') }}" alt="" class="img-responsive">
+            </li>
+        </ul>
+    </div>
+    {#end slider principal#}
+    {#first section#}
+    <div class="row col-sm-12 padTB50 padB50">
+        <div class="col-sm-9">
+            <p class="marL50">
+                La informacion que se vaya a poner de los viajeros<br>
+                en una o dos lineas con justificacion lateral .......
+            </p>
+        </div>
+        <div class="row col-sm-3">
+            <div class="col-sm-6 text-right">
+                <a href="#"><img src="{{ asset('img/desplazador2.png') }}"></a>
+            </div>
+            <div class="col-sm-6 padLT010">
+                <a id="app-a" href="section2">Next:<br><strong>"{{ 'Section'|trans }}"</strong></a>
+            </div>
+        </div>
+    </div>
+    {#end first section#}
+
+    {#second slider#}
+    <div class="col-sm-12 slider-border">
+        <div class="slider1">
+
+            <ul class="items">
+                <li>
+                    <div class="banner">
+                        <strong>Italian<span>Fettuccine</span></strong>
+                        <b>Dish of the Day</b>
+
+                        <p>
+                            <span>Lorem ipsum dolamet consectetur<br>
+                            adipisicing elit, sed do eiusmod tempor aliqua enim ad minim veniam, quis nosinci- didunt ut labore et dolore.</span>
+                        </p>
+                    </div>
+                    <img src="{{ asset('img/img1.jpg') }}" alt="">
+                </li>
+                <li>
+                    <div class="banner">
+                        <strong>succulent<span>meat</span></strong>
+                        <b>Dish of the Day</b>
+
+                        <p>
+                            <span>Lorem ipsum dolamet consectetur <br>
+                            adipisicing elit, sed do eiusmod tempor aliqua enim ad minim veniam, quis nosinci- didunt ut labore et dolore.</span>
+                        </p>
+                    </div>
+                    <img src="{{ asset('img/img2.jpg') }}" alt="">
+
+                </li>
+                <li>
+                    <div class="banner">
+                        <strong>French-Style<span>Tartlet</span></strong>
+                        <b>Dish of the Day</b>
+
+                        <p>
+                            <span>Lorem ipsum dolamet consectetur <br>
+                            adipisicing elit, sed do eiusmod tempor aliqua enim ad minim veniam, quis nosinci- didunt ut labore et dolore.</span>
+                        </p>
+                    </div>
+                    <img src="{{ asset('img/img3.jpg') }}" alt="">
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    {#end second slider#}
+
+    {#second section#}
+    <div class="row col-sm-12 padT50">
+        <div class="col-sm-6 text-right">
+            <a href="#"><img src="{{ asset('img/desplazador2.png') }}"></a>
+        </div>
+        <div class="col-sm-6 padLT010">
+            <a id="section2" href="#">Next:<br><strong>"{{ 'Section'|trans }}"</strong></a>
+        </div>
+    </div>
+    <div class="row col-sm-12 padT50 text-center">
+        <h1>{{ 'Safety'|trans }}</h1>
+
+        <p class="marT10">
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br>
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+    </div>
+    <div class="row col-sm-12 padT50">
+        <div class="col-sm-4 text-center padLR30">
+            <img class="marB50" src="{{ asset('img/verified_credentials.png') }}">
+
+            <h2>{{ 'verified_credentials'|trans }}</h2>
+
+            <p class="marT10 text-justify">
+                Natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae
+                ab illo inventore veritatis et
+                quasi architecto beatae vitae
+                dicta sunt explicabo.
+                Sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni
+                dolores eos qui ratione voluptatem
+                sequi nesciunt.
+            </p>
+        </div>
+        <div class="col-sm-4 text-center padLR30">
+            <img class="marB25" src="{{ asset('img/comunication_internal.png') }}">
+
+            <h2>{{ 'internal_comunication'|trans }}</h2>
+
+            <p class="marT10 text-justify">
+                Natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae
+                ab illo inventore veritatis et
+                quasi architecto beatae vitae
+                dicta sunt explicabo.
+                Sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni
+                dolores eos qui ratione voluptatem
+                sequi nesciunt.
+            </p>
+        </div>
+        <div class="col-sm-4 text-center padLR30">
+            <img class="marB23" src="{{ asset('img/coverage.png') }}">
+
+            <h2>{{ 'insurance_coverage'|trans }}</h2>
+
+            <p class="marT10 text-justify">
+                Natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae
+                ab illo inventore veritatis et
+                quasi architecto beatae vitae
+                dicta sunt explicabo.
+                Sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni
+                dolores eos qui ratione voluptatem
+                sequi nesciunt.
+            </p>
+        </div>
+    </div>
+    <div class="row col-sm-12 padT50 marB50">
+        <div class="col-sm-4 text-center padLR30">
+            <img class="marB37" src="{{ asset('img/rating.png') }}">
+
+            <h2>{{ 'rating_system'|trans }}</h2>
+
+            <p class="marT10 text-justify">
+                Natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae
+                ab illo inventore veritatis et
+                quasi architecto beatae vitae
+                dicta sunt explicabo.
+                Sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni
+                dolores eos qui ratione voluptatem
+                sequi nesciunt.
+            </p>
+        </div>
+        <div class="col-sm-4 text-center padLR30">
+            <img class="marB50" src="{{ asset('img/payments.png') }}">
+
+            <h2>{{ 'secure_payments'|trans }}</h2>
+
+            <p class="marT10 text-justify">
+                Natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae
+                ab illo inventore veritatis et
+                quasi architecto beatae vitae
+                dicta sunt explicabo.
+                Sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni
+                dolores eos qui ratione voluptatem
+                sequi nesciunt.
+            </p>
+        </div>
+        <div class="col-sm-4 text-center padLR30">
+            <img class="marB37" src="{{ asset('img/autentic.png') }}">
+
+            <h2>{{ 'authentic_and_choice'|trans }}</h2>
+
+            <p class="marT10 text-justify">
+                Natus error sit voluptatem
+                accusantium doloremque laudantium,
+                totam rem aperiam, eaque ipsa quae
+                ab illo inventore veritatis et
+                quasi architecto beatae vitae
+                dicta sunt explicabo.
+                Sit aspernatur aut odit aut fugit,
+                sed quia consequuntur magni
+                dolores eos qui ratione voluptatem
+                sequi nesciunt.
+            </p>
+        </div>
+    </div>
+
+    {#</div>#}
+{% endblock body %}
+{#{% block footer_content %}#}
+    {#{{ parent() }}#}
+{#{% endblock footer_content %}#}

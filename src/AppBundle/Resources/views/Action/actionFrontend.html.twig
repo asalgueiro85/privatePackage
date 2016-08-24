@@ -1,0 +1,152 @@
+{% extends '@App/layoutBackend.html.twig' %}
+{% block head_style %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('components/jasny/file-upload/bootstrap-fileupload.min.css') }}"
+          type="text/css" media="all">
+{% endblock head_style %}
+{% block body -%}
+    <form ng-controller="ActionController as actionCtrl" id="form_grupo"
+          action="{{ path('backend_search') }} "
+          role="form"
+          method="post" {{ form_enctype(form) }}>
+        <div class="row div-first">
+
+
+            <div class="contenidos">
+                <div class="col-sm-4 text-center div-first-4 columna1">
+                    {#<p>What do you want to do<br> with a paket?</p>#}
+                    {% include 'AppBundle:Include:sendPacket.html.twig' %}
+                </div>
+                <div class="col-sm-5 text-center div-first-4 padl0 columna1">
+                    {% include 'AppBundle:Include:location.html.twig' %}
+                </div>
+                <div id="columna3" class="col-sm-3 text-center disabledbutton columna1">
+                    <p class="div-text"> When you want start<br> this awesome travel?</p>
+
+                    <div class="form-group col-sm-12">
+                        {{ form_widget(form.dateFrom) }}
+                    </div>
+                    <div class="form-group col-sm-12">
+                        {{ form_widget(form.dateTo) }}
+                    </div>
+
+                </div>
+            </div>
+
+
+            {#<div class="col-sm-4 text-center div-first-4">#}
+            {#&#123;&#35;<p>What do you want to do<br> with a paket?</p>&#35;&#125;#}
+            {#{% include 'AppBundle:Include:sendPacket.html.twig' %}#}
+            {#</div>#}
+
+            {#<div class="col-sm-5 text-center div-first-4 padl0">#}
+            {#{% include 'AppBundle:Include:location.html.twig' %}#}
+            {#</div>#}
+
+            {#<div class="col-sm-3 text-center">#}
+            {#<p class="div-text"> When you want start<br> this awesome travel?</p>#}
+            {#<div class="form-group col-sm-12">#}
+            {#{{ form_widget(form.dateFrom) }}#}
+            {#</div>#}
+            {#<div class="form-group col-sm-12">#}
+            {#{{ form_widget(form.dateTo) }}#}
+            {#</div>#}
+
+            {#</div>#}
+
+            <div class="col-sm-12 padl0 padR0 contenidos">
+
+                <div class="col-sm-4 div-foot-button columna1">
+                    {#<div class="row">#}
+                    <div class="col-sm-4 col-sm-offset-4 text-center padl0 padR0" ng-hide="btnPacket">
+                        <a ng-click="actionCtrl.enabledSecondDiv()"
+                           class="btn btn-block btn-success btn-register bc-33b5e6">{{ 'back.next'|trans|upper }}</a>
+                    </div>
+                    {#<div class="col-sm-4 col-sm-offset-4 text-center padl0 padR0" ng-hide="btnPacketEdit">#}
+                        {#<a ng-click="actionCtrl.enabledSecondDiv()"#}
+                           {#class="btn btn-block btn-success btn-register bc-edit">{{ 'back.edit'|trans|upper }}</a>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="row">#}
+                    <div class="col-sm-4 col-sm-offset-4 text-center marT10 padB50" ng-hide="btnPacket">
+                        <a href="{{ path('app_backend') }}" class="btn btn-block">{{ 'back.cancel'|trans }}</a>
+                    </div>
+                    {#</div>#}
+                </div>
+
+                <div class="col-sm-5 div-foot-button columna1">
+                    {#<div class="row">#}
+                    <div class="col-sm-4 col-sm-offset-4 text-center" ng-hide="btnLocation">
+                        <a ng-click="actionCtrl.enabledThirdDiv()"
+                           class="btn btn-block btn-success btn-register bc-33b5e6">{{ 'back.next'|trans|upper }}</a>
+                    </div>
+                    {#<div class="col-sm-4 col-sm-offset-4 text-center" ng-hide="btnLocationEdit">#}
+                        {#<a ng-click="actionCtrl.enabledThirdDiv()"#}
+                           {#class="btn btn-block btn-success btn-register bc-edit">{{ 'back.edit'|trans|upper }}</a>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="row">#}
+                    <div class="col-sm-4 col-sm-offset-4 text-center marT10 padB50" ng-hide="btnLocation">
+                        <a ng-click="actionCtrl.enabledFirstDiv()"
+                           class="btn btn-block padl0 padR0">{{ 'back.cancel'|trans }}</a>
+                    </div>
+                    {#</div>#}
+                </div>
+                <div class="col-sm-3 div-foot-button columna1">
+                    {#<div class="row">#}
+                    <div class="col-sm-6 col-sm-offset-4 text-center padl0" ng-hide="btnSearch">
+                        <button type="submit"
+                                class="btn btn-block btn-success btn-register bc-33b5e6">{{ 'Search'|trans|upper }}</button>
+                    </div>
+                    {#</div>#}
+                    {#<div class="row">#}
+                    <div class="col-sm-6 col-sm-offset-4 text-center marT10 padB50" ng-hide="btnSearch">
+                        <a ng-click="actionCtrl.enabledSecondDiv()" class="btn btn-block">{{ 'back.cancel'|trans }}</a>
+                    </div>
+                    {#</div>#}
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+{% endblock %}
+{% block javascripts %}
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('components/geocomplete/jquery.geocomplete.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/geocomplete/app.geocomplete.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('components/jasny/file-upload/bootstrap-fileupload.js') }}"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("#location").geocomplete({
+                details: ".geo-details",
+                detailsAttribute: "data-geo"
+            });
+
+        });
+        $(function () {
+            $("#locationTo").geocomplete({
+                details: ".geo-detailsTo",
+                detailsAttribute: "data-geoTo"
+            });
+
+        });
+        $('#btn-remove').click(
+                function () {
+                    console.info('probando');
+                    $('#dir_foto').attr("src", '{{ asset('img/back/add_photo.png') }}');
+                });
+        $('#span_send').click(function () {
+            $('#type').val(2);
+            console.info($('#type').val());
+        });
+
+        $('#span_packet').click(function () {
+            $('#type').val(1);
+            console.info($('#type').val());
+        });
+    </script>
+{% endblock %}

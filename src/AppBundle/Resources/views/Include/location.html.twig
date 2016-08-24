@@ -1,0 +1,181 @@
+<div id="div_location" class="row marL0 marR0 disabledbutton">
+    <div class="col-sm-12 div-pin">
+        <div class="col-sm-6 text-right padr0">
+            <div class="div-img-pin-from"></div>
+        </div>
+        <div class="col-sm-6 text-left padl0 grey-form-color padt5">
+            From...
+        </div>
+
+    </div>
+    <div class="row col-sm-12 div-form-style geo-details">
+        <div class="col-sm-12 div-form div-form-plus">
+            <div class="form-group col-sm-4 div-form-label">
+                Location
+            </div>
+            <div class="form-group col-sm-8 div-form-left">
+                <input type="text" name="location" id="location" class="form-control" placeholder="Location">
+            </div>
+        </div>
+
+
+        <div class="col-sm-4 padM0 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    Country
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    <input readonly type="text" data-geo="country" value=""
+                           id="setting_country" name="setting_countryFrom" class="location form-control" placeholder="Country">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4 padM0 padL5 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    City
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    <input readonly type="text" data-geo="administrative_area_level_2"
+                           value="" id="setting_city" name="setting_cityFrom"
+                           class="form-control" placeholder="City">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 padM0 padL5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    State
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    <input readonly type="text" data-geo="administrative_area_level_1"
+                           value="" id="setting_state" name="setting_stateFrom"
+                           class="form-control" placeholder="State">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 padM0 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    Code
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    {{ form_widget(form.direction.zipCodeFrom) }}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4 padM0 padL5 padR5">
+            <div class="col-sm-12 div-form div-form-plus padL5">
+                <div class="form-group col-sm-4 div-form-label">
+                    Number
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    {{ form_widget(form.direction.numberFrom) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 padM0 padL5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    Floor
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    {{ form_widget(form.direction.floorFrom) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-12 div-pin1">
+        <div class="col-sm-6 text-right padl0 grey-form-color padt5">
+            To...
+        </div>
+        <div class="col-sm-6 text-left padr0">
+            <div class="div-img-pin-to"></div>
+        </div>
+    </div>
+    <div class="row col-sm-12 div-form-style geo-detailsTo">
+        <div class="col-sm-12 div-form div-form-plus">
+            <div class="form-group col-sm-4 div-form-label">
+                Location
+            </div>
+            <div class="form-group col-sm-8 div-form-left">
+                <input type="text" name="locationTo" id="locationTo" class="form-control" placeholder="Location">
+            </div>
+        </div>
+
+
+        <div class="col-sm-4 padM0 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    Country
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    <input readonly type="text" data-geoTo="country" value=""
+                           id="setting_countryTo" name="setting_countryTo" class="form-control" placeholder="Country">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4 padM0 padL5 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    City
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    <input readonly type="text" data-geoTo="administrative_area_level_2"
+                           value="" id="setting_cityTo" name="setting_cityTo"
+                           class="form-control" placeholder="City">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 padM0 padL5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    State
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    <input readonly type="text" data-geoTo="administrative_area_level_1"
+                           value="" id="setting_stateTo" name="setting_stateTo"
+                           class="form-control" placeholder="State" >
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 padM0 padR5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    Code
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    {{ form_widget(form.direction.zipCodeTo) }}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4 padM0 padL5 padR5">
+            <div class="col-sm-12 div-form div-form-plus padL5">
+                <div class="form-group col-sm-4 div-form-label">
+                    Number
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    {{ form_widget(form.direction.numberTo) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 padM0 padL5">
+            <div class="col-sm-12 div-form div-form-plus">
+                <div class="form-group col-sm-4 div-form-label">
+                    Floor
+                </div>
+                <div class="form-group col-sm-8 div-form-left padR0 padL5">
+                    {{ form_widget(form.direction.floorTo) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

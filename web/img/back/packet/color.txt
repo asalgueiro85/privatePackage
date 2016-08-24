@@ -1,0 +1,3 @@
+color div fondo f3f3f3
+color div empty f2f2f2
+azul oscuro 2e819d

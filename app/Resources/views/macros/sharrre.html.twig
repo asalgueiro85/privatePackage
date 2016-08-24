@@ -1,0 +1,32 @@
+{% macro css() %}
+  <link rel="stylesheet" href="{{ asset('assets/plugins/sharrre/sharrre.css') }}"/>
+{% endmacro %}
+
+{% macro js() %}
+  <script type="text/javascript" src="{{ asset('assets/plugins/sharrre/jquery.sharrre.min.js') }}"></script>
+{% endmacro %}
+
+{% macro default_component() %}
+  jQuery('.sharrre-element').sharrre({
+    share: {
+      googlePlus: true,
+      facebook: true,
+      twitter: true,
+      pinterest: true
+    },
+    enableTracking: true,
+    template: '<span class="box"><a class="share" href="#">Compartir</a></span>',
+    buttons: {
+      googlePlus: {size: 'tall', annotation:'bubble'},
+      facebook: {layout: 'box_count'},
+      twitter: {count: 'vertical'}
+    },
+    hover: function(api, options){
+      jQuery(api.element).find('.buttons').show();
+    },
+    hide: function(api, options){
+      jQuery(api.element).find('.buttons').hide();
+    },
+    urlCurl: "{{ asset('assets/plugins/sharrre/sharrre.php') }}"
+  });
+{% endmacro %}

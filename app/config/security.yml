@@ -1,0 +1,66 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:                        ^/
+            access_denied_handler:          authentication.handler.login_failure_handler
+            form_login:
+                provider:                   fos_userbundle
+                csrf_provider:              form.csrf_provider
+                check_path:                 fos_user_security_check #app_login_check #
+                login_path:                 app_login #fos_user_security_login
+                success_handler:            authentication.handler.login_success_handler
+                remember_me:                true
+            oauth:
+                resource_owners:
+                    facebook:               "/login/check-facebook"
+                    google:                 "/login/check-google"
+                login_path:                 /en/app-login
+                failure_path:               /en/app-login
+                oauth_user_provider:
+                    service:                user_sm_provider
+#                    oauth: ~
+            logout:
+                path:                       fos_user_security_logout
+                success_handler:            logout.handler.logout_success_handler
+            anonymous:                      true
+#            anonymous: ~
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    encoders:
+            FOS\UserBundle\Model\UserInterface: sha512
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
+        sm_user:
+            id: user_sm_provider
+    access_control:
+#        - { path: ^/(es|en)/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/(es|en)/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/(es|en)/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/(es|en)/admin/, role: ROLE_ADMIN }
+#        - { path: ^/(es|en), role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/(es|en)/app-login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(es|en)/app-register, role: IS_AUTHENTICATED_ANONYMOUSLY}
+#        - { path: ^/(es|en), role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/(es|en)/app_backend/*, roles: [ROLE_USER, ROLE_ADMIN] }
+        - { path: ^/(es|en)/action/*, roles: [ROLE_USER, ROLE_ADMIN] }
+#        - { path: ^/(es|en), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/(es|en), role: ROLE_ADMIN}
+
